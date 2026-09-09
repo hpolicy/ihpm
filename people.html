@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>구성원 · 보건정책관리연구소(준)</title>
+<meta name="description" content="고려대학교 보건정책관리연구소(준) — 데이터로 정책과 관리의 근거를 만듭니다">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap">
+<style>
+  :root{
+    --ink:#1E2126; --ink-2:#3D434B; --body:#575D66; --muted:#6E747D;
+    --crimson:#C4485C; --crimson-d:#A03348; --crimson-l:#E08494;
+    --paper:#FFFFFF; --sand:#F4F1EC; --sand-2:#F7F5F2;
+    --rule:#E3E5E8; --rule-warm:#E3E0DA; --dark-rule:#31363E; --dark-2:#A2A8B1;
+    --pad:48px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Malgun Gothic',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  a{color:var(--crimson);text-decoration:none}
+  a:hover{color:var(--crimson-d);text-decoration:underline}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 var(--pad)}
+  .en-only{display:none}
+  body.en .ko-only{display:none}
+  body.en .en-only{display:block}
+
+  /* header */
+  .util{background:var(--ink);color:var(--dark-2);border-bottom:1px solid #2A2E35}
+  .util .wrap{display:flex;justify-content:space-between;align-items:center;height:34px;
+    font-size:11.5px;letter-spacing:.04em}
+  .langbtn{background:none;border:1px solid #4A505A;color:#C6CBD2;font:inherit;font-size:11.5px;
+    padding:3px 10px;cursor:pointer;letter-spacing:.06em}
+  .langbtn:hover{border-color:#7E858F;color:#fff}
+  .nav{background:var(--ink);color:#E8E6E3;position:sticky;top:0;z-index:20}
+  .nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;
+    min-height:64px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+  .brand{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .brand b{font-size:18px;font-weight:700;letter-spacing:-.01em}
+  .brand span{font-size:11px;letter-spacing:.1em;color:var(--dark-2)}
+  .menu{display:flex;gap:22px;flex-wrap:wrap;font-size:13.5px}
+  .menu a{color:#C6CBD2}
+  .menu a:hover{color:#fff;text-decoration:none}
+  .menu a.j{color:var(--crimson-l)}
+
+  /* hero */
+  .hero{position:relative;background:var(--ink);overflow:hidden}
+  .hero svg{position:absolute;left:0;top:0;width:100%;height:100%}
+  .hero .wrap{position:relative;padding-top:84px;padding-bottom:88px;max-width:1200px}
+  .eyebrow{font-size:11.5px;letter-spacing:.16em;color:var(--crimson-l);font-weight:500}
+  .hero h1{margin:22px 0 0;font-size:40px;font-weight:700;line-height:1.42;letter-spacing:-.025em;
+    color:#F2F1EF;text-wrap:pretty;max-width:640px}
+  .hero p{margin:22px 0 0;font-size:15px;line-height:1.9;color:#B7BCC4;max-width:520px;text-wrap:pretty}
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+  .btn{padding:12px 24px;font-size:14px;font-weight:500;background:var(--crimson);color:#fff}
+  .btn:hover{background:var(--crimson-d);color:#fff;text-decoration:none}
+  .btn.ghost{background:none;border:1px solid #5A616B;color:#E8E6E3}
+  .btn.ghost:hover{border-color:#9AA1AA;color:#fff}
+
+  /* metrics */
+  .metrics{background:var(--sand);border-bottom:1px solid var(--rule-warm)}
+  .metrics .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+  .metric{padding:24px 0 24px 28px;border-left:1px solid #E0DCD5;display:flex;flex-direction:column;gap:5px}
+  .metric:first-child{padding-left:0;border-left:0}
+  .metric b{font-size:26px;font-weight:700;letter-spacing:-.02em}
+  .metric b i{font-style:normal;font-size:13.5px;font-weight:400;color:var(--muted)}
+  .metric span{font-size:13px;color:var(--muted)}
+  .metric.accent b{color:var(--crimson)}
+
+  /* sections */
+  section{padding:64px 0;border-bottom:1px solid var(--rule)}
+  section.tint{background:var(--sand);border-bottom-color:var(--rule-warm)}
+  .shead{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;
+    flex-wrap:wrap;margin-bottom:30px}
+  .shead h2{margin:0;font-size:23px;font-weight:700;letter-spacing:-.02em}
+  .shead .sub{font-size:13px;color:var(--muted);margin-top:7px}
+  .lead{font-size:16px;line-height:1.95;color:var(--ink-2);max-width:760px;text-wrap:pretty}
+
+  .cols{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:30px}
+  .c7{grid-column:span 7}
+  .c5{grid-column:span 5}
+  .c6{grid-column:span 6}
+
+  ul.plain{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+  ul.plain li{font-size:14px;line-height:1.65;color:var(--body);padding-left:14px;position:relative}
+  ul.plain li::before{content:"·";position:absolute;left:0;color:var(--crimson)}
+
+  /* research cards */
+  .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+  .card{background:var(--sand-2);border-top:3px solid var(--crimson);padding:28px 26px 30px;
+    display:flex;flex-direction:column;gap:14px}
+  .card .kicker{font-size:11.5px;letter-spacing:.1em;color:var(--crimson);font-weight:500}
+  .card h3{margin:0;font-size:18px;font-weight:700;line-height:1.5}
+  .card .foot{margin-top:auto;padding-top:14px;border-top:1px solid var(--rule-warm);
+    display:flex;flex-direction:column;gap:11px}
+  .card .cname{font-size:13.5px;font-weight:500}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{padding:7px 12px;border:1px solid #D8D4CD;background:#fff;font-size:13px;color:var(--ink)}
+  a.chip:hover{border-color:var(--crimson);color:var(--crimson);text-decoration:none}
+  .chip.slot{border-style:dashed;border-color:#C9C6C0;color:var(--muted);background:none}
+
+  /* people */
+  .people{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--rule-warm)}
+  .person{background:var(--paper);padding:20px 22px 22px;display:flex;flex-direction:column;gap:7px}
+  .person .nm{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+  .person .nm b{font-size:16px;font-weight:700;letter-spacing:-.01em}
+  .person .nm span{font-size:12.5px;color:var(--muted)}
+  .person .field{font-size:13.5px;font-weight:500;color:var(--crimson-d)}
+  .person .detail{font-size:13px;line-height:1.65;color:var(--body)}
+  .person.head{background:var(--sand-2)}
+
+  .hpmark{font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-weight:700;letter-spacing:-.005em}
+
+  /* journal */
+  .jbox{background:#fff;border:1px solid var(--rule-warm);padding:22px 22px 24px;
+    display:flex;flex-direction:column;gap:12px}
+  .jrow{padding:9px 0;border-top:1px solid #EDEBE7;font-size:13.5px;line-height:1.6}
+  .jmeta{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .jmeta .lbl{font-size:11px;letter-spacing:.1em;color:var(--muted)}
+
+  /* projects */
+  .projects{display:flex;flex-direction:column}
+  .proj{padding:16px 0;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:6px}
+  .proj .ptitle{font-size:14.5px;font-weight:500;line-height:1.6;text-wrap:pretty}
+  .proj .pmeta{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+  .proj .pmeta span+span{padding-left:14px;border-left:1px solid var(--rule)}
+
+  details.more{border-top:1px solid var(--rule)}
+  details.more>summary{list-style:none;cursor:pointer;padding:14px 0;font-size:13.5px;
+    font-weight:500;color:var(--crimson-d)}
+  details.more>summary::-webkit-details-marker{display:none}
+  details.more>summary::after{content:" ▾"}
+  details.more[open]>summary::after{content:" ▴"}
+  details.more>summary:hover{color:var(--crimson)}
+  details.more .proj:first-child{border-top:1px solid var(--rule)}
+
+  /* activity */
+  .actgroup+.actgroup{margin-top:34px}
+  .actheading{font-size:15px;font-weight:700;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+  .actlist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 34px}
+  .act{display:flex;gap:12px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--rule);
+    font-size:13.5px;line-height:1.6}
+  .act .who{flex:0 0 52px;font-weight:500}
+  .act .what{flex:1 1 auto;display:flex;flex-direction:column;gap:2px}
+  .act .what .org{color:var(--ink-2)}
+  .act .what .role{color:var(--crimson-d);font-size:13px}
+  .act .per{flex:0 0 auto;color:var(--muted);font-size:12.5px;white-space:nowrap}
+
+  /* news */
+  .newsrow{display:flex;gap:16px;align-items:baseline;padding:14px 0;border-top:1px solid var(--rule);
+    font-size:14px;flex-wrap:wrap}
+  .tag{font-size:11.5px;padding:3px 8px;background:#EAEEF1;color:#4C5661}
+  .tag.n{background:#F5E7EA;color:var(--crimson-d)}
+  .newsrow .date{margin-left:auto;color:var(--muted);font-size:13px}
+  .event{background:var(--sand);border-left:3px solid var(--crimson);padding:24px 22px;
+    display:flex;flex-direction:column;gap:14px}
+
+  /* contact + footer */
+  .kv{display:flex;gap:16px;padding:13px 0;border-top:1px solid var(--rule);font-size:14px;line-height:1.7}
+  .kv b{flex:0 0 96px;font-weight:500;color:var(--muted)}
+  footer{background:var(--ink);color:var(--dark-2);font-size:13px;line-height:1.8}
+  footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+    padding-top:32px;padding-bottom:38px}
+  footer b{display:block;color:#E8E6E3;font-weight:500;padding-bottom:6px}
+  footer .links{display:flex;gap:24px;flex-wrap:wrap}
+  footer a{color:var(--dark-2)}
+  footer a:hover{color:#fff}
+  .note{font-size:12.5px;color:var(--muted);margin-top:16px}
+
+  @media (max-width:900px){
+    :root{--pad:28px}
+    .metrics .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .metric{padding-left:20px}
+    .metric:nth-child(3){padding-left:0;border-left:0}
+    .cards{grid-template-columns:1fr}
+    .people{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .actlist{grid-template-columns:1fr}
+    .c7,.c5,.c6{grid-column:span 12}
+    .hero h1{font-size:30px}
+    .nav .wrap{min-height:0}
+    .menu{gap:14px;font-size:13px}
+  }
+  @media (max-width:560px){
+    .metrics .wrap{grid-template-columns:1fr}
+    .metric{padding-left:0;border-left:0;border-top:1px solid #E0DCD5}
+    .metric:first-child{border-top:0}
+    .people{grid-template-columns:1fr}
+  }
+
+  .menu a.on{color:#fff}
+  .pagehead{background:var(--ink);color:#E8E6E3;padding:56px 0 58px}
+  .pagehead h1{margin:0;font-size:32px;font-weight:700;letter-spacing:-.025em;color:#F2F1EF}
+  .pagehead p{margin:14px 0 0;font-size:14.5px;line-height:1.85;color:#B7BCC4;max-width:640px;text-wrap:pretty}
+</style>
+</head>
+<body>
+<div class="util">
+  <div class="wrap">
+    <div class="t" data-ko="KOREA UNIVERSITY · COLLEGE OF HEALTH SCIENCE" data-en="KOREA UNIVERSITY · COLLEGE OF HEALTH SCIENCE">KOREA UNIVERSITY · COLLEGE OF HEALTH SCIENCE</div>
+    <button class="langbtn" id="lang" type="button">ENGLISH</button>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap">
+    <div class="brand">
+      <a href="index.html" style="color:inherit;text-decoration:none"><b class="t" data-ko="보건정책관리연구소(준)" data-en="Institute of Health Policy and Management">보건정책관리연구소(준)</b></a>
+      <span class="t" data-ko="INSTITUTE OF HEALTH POLICY AND MANAGEMENT" data-en="PREPARATORY INSTITUTE · KOREA UNIVERSITY">INSTITUTE OF HEALTH POLICY AND MANAGEMENT</span>
+    </div>
+    <nav class="menu">
+        <a href="index.html#about" class="t" data-ko="연구소 소개" data-en="About">연구소 소개</a>
+        <a href="index.html#research" class="t" data-ko="연구분야·센터" data-en="Research">연구분야·센터</a>
+        <a href="people.html" class="t on" data-ko="구성원" data-en="People">구성원</a>
+        <a href="research.html" class="t" data-ko="연구성과" data-en="Projects">연구성과</a>
+        <a href="https://hpolitics.org" class="j t" target="_blank" rel="noopener" data-ko="Health Politics ↗" data-en="Health Politics ↗">Health Politics ↗</a>
+    </nav>
+  </div>
+</div>
+
+<div class="pagehead">
+  <div class="wrap">
+    <h1 class="t" data-ko="구성원" data-en="People">구성원</h1>
+    <p class="t" data-ko="보건정책관리학부 전임교원 11인이 연구위원으로 참여합니다." data-en="Eleven full-time faculty of the School of Health Policy and Management serve as research fellows.">보건정책관리학부 전임교원 11인이 연구위원으로 참여합니다.</p>
+  </div>
+</div>
+
+<section id="people">
+  <div class="wrap">
+    <div class="shead">
+      <div>
+        <div class="sub t" data-ko="연구위원 — 보건정책관리학부 전임교원 11인 · 직위순" data-en="Research fellows — 11 full-time faculty of the School of Health Policy and Management">연구위원 — 보건정책관리학부 전임교원 11인 · 직위순</div>
+      </div>
+    </div>
+    <div class="people">
+      <div class="person head">
+        <div class="nm"><b>정혜주</b><span class="t" data-ko="교수 · 소장(준)" data-en="Professor · Director">교수 · 소장(준)</span></div>
+        <div class="field t" data-ko="보건사회정책" data-en="Health and Social Policy">보건사회정책</div>
+        <div class="detail t" data-ko="건강의 정치적 결정요인 · 복지국가와 인구건강 · 건강형평성" data-en="Political determinants of health · welfare states and population health · health equity">건강의 정치적 결정요인 · 복지국가와 인구건강 · 건강형평성</div>
+      </div>
+      <div class="person">
+        <div class="nm"><b>최만규</b><span class="t" data-ko="교수" data-en="Professor">교수</span></div>
+        <div class="field t" data-ko="보건의료경영" data-en="Healthcare Management">보건의료경영</div>
+        <div class="detail t" data-ko="병원 재무구조 · 보건행정 · 의료조직 관리" data-en="Hospital finance · health administration · organisational management">병원 재무구조 · 보건행정 · 의료조직 관리</div>
+      </div>
+      <div class="person">
+        <div class="nm"><b>김혜영</b><span class="t" data-ko="교수" data-en="Professor">교수</span></div>
+        <div class="field t" data-ko="보건데이터과학" data-en="Health Data Science">보건데이터과학</div>
+        <div class="detail t" data-ko="기계학습 기반 건강 예측모델 · 보건통계" data-en="Machine-learning prediction models · health statistics">기계학습 기반 건강 예측모델 · 보건통계</div>
+      </div>
+      <div class="person">
+        <div class="nm"><b>오하나</b><span class="t" data-ko="교수" data-en="Professor">교수</span></div>
+        <div class="field t" data-ko="건강증진" data-en="Health Promotion">건강증진</div>
+        <div class="detail t" data-ko="영양역학 · 웨어러블·연속혈당측정 기반 건강행태 연구" data-en="Nutritional epidemiology · wearable and CGM-based behaviour research">영양역학 · 웨어러블·연속혈당측정 기반 건강행태 연구</div>
+      </div>
+      <div class="person">
+        <div class="nm"><b>김진호</b><span class="t" data-ko="부교수" data-en="Associate Professor">부교수</span></div>
+        <div class="field t" data-ko="보건사회인구학" data-en="Health Social Demography">보건사회인구학</div>
+        <div class="detail t" data-ko="건강의 사회적 결정요인 · 청소년 건강격차" data-en="Social determinants of health · adolescent health disparities">건강의 사회적 결정요인 · 청소년 건강격차</div>
+      </div>
+      <div class="person">
+        <div class="nm"><b>김록리</b><span class="t" data-ko="부교수" data-en="Associate Professor">부교수</span></div>
+        <div class="field t" data-ko="국제보건" data-en="Global Health">국제보건</div>
+        <div class="detail t" data-ko="다수준 분석 기반 인구건강 변이 · 글로벌 헬스 형평성" data-en="Multilevel analysis of population health · global health equity">다수준 분석 기반 인구건강 변이 · 글로벌 헬스 형평성</div>
+      </div>
+      <div class="person">
+        <div class="nm"><b>박성철</b><span class="t" data-ko="부교수" data-en="Associate Professor">부교수</span></div>
+        <div class="field t" data-ko="보건경제학" data-en="Health Economics">보건경제학</div>
+        <div class="detail t" data-ko="지불제도와 위험조정 · 의료AI 도입의 경제성 분석" data-en="Payment systems and risk adjustment · economics of medical AI adoption">지불제도와 위험조정 · 의료AI 도입의 경제성 분석</div>
+      </div>
+      <div class="person">
+        <div class="nm"><b>최홍조</b><span class="t" data-ko="부교수" data-en="Associate Professor">부교수</span></div>
+        <div class="field t" data-ko="공중보건실행과학" data-en="Public Health Implementation Science">공중보건실행과학</div>
+        <div class="detail t" data-ko="결핵과 사회경제적 불평등 · 보건의료인력 정책" data-en="Tuberculosis and socioeconomic inequality · health workforce policy">결핵과 사회경제적 불평등 · 보건의료인력 정책</div>
+      </div>
+      <div class="person">
+        <div class="nm"><b>손민성</b><span class="t" data-ko="부교수" data-en="Associate Professor">부교수</span></div>
+        <div class="field t" data-ko="보건행정" data-en="Health Administration">보건행정</div>
+        <div class="detail t" data-ko="장기요양보험과 의료이용 · 노인 의료·요양·돌봄 자원배분" data-en="Long-term care insurance and utilisation · resource allocation for older adults">장기요양보험과 의료이용 · 노인 의료·요양·돌봄 자원배분</div>
+      </div>
+      <div class="person">
+        <div class="nm"><b>이환희</b><span class="t" data-ko="부교수" data-en="Associate Professor">부교수</span></div>
+        <div class="field t" data-ko="보건통계학" data-en="Biostatistics">보건통계학</div>
+        <div class="detail t" data-ko="빅데이터 기반 환경보건 · 기후재난과 취약집단" data-en="Big-data environmental health · climate disasters and vulnerable groups">빅데이터 기반 환경보건 · 기후재난과 취약집단</div>
+      </div>
+      <div class="person">
+        <div class="nm"><b>박금령</b><span class="t" data-ko="조교수" data-en="Assistant Professor">조교수</span></div>
+        <div class="field t" data-ko="건강형평성" data-en="Health Equity">건강형평성</div>
+        <div class="detail t" data-ko="주거와 건강불평등 · 의료이용의 형평성" data-en="Housing and health inequality · equity in healthcare utilisation">주거와 건강불평등 · 의료이용의 형평성</div>
+      </div>
+    </div>
+    <p class="note t" data-ko="연구분야는 학부 연구실 구분과 연구업적서를 따랐습니다. 객원연구원·연구보조원 위촉 현황은 준비 중입니다." data-en="Research areas follow the School’s laboratory listing and the fellows’ research records. Visiting fellows and research assistants: listing in preparation; English name spellings to be confirmed.">연구분야는 학부 연구실 구분과 연구업적서를 따랐습니다. 객원연구원·연구보조원 위촉 현황은 준비 중입니다.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <b class="t" data-ko="고려대학교 보건정책관리연구소(준)" data-en="Institute of Health Policy and Management, Korea University">고려대학교 보건정책관리연구소(준)</b>
+      <div class="t" data-ko="02841 서울특별시 성북구 안암로 145 하나과학관 B동 364호" data-en="Hana Science Hall B, Room 364, 145 Anam-ro, Seongbuk-gu, Seoul 02841, Korea">02841 서울특별시 성북구 안암로 145 하나과학관 B동 364호</div>
+    </div>
+    <div class="links">
+      <a href="https://hpolitics.org" target="_blank" rel="noopener">Health Politics</a>
+      <a href="https://hpm.korea.ac.kr" target="_blank" rel="noopener"><span class="t" data-ko="보건정책관리학부" data-en="School of Health Policy and Management">보건정책관리학부</span></a>
+      <a href="https://health.korea.ac.kr" target="_blank" rel="noopener"><span class="t" data-ko="보건과학대학" data-en="College of Health Science">보건과학대학</span></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn = document.getElementById('lang');
+  var nodes = document.querySelectorAll('.t');
+  function apply(lang){
+    document.body.classList.toggle('en', lang === 'en');
+    for (var i = 0; i < nodes.length; i++){
+      var v = nodes[i].getAttribute(lang === 'en' ? 'data-en' : 'data-ko');
+      if (v !== null) nodes[i].innerHTML = v;
+    }
+    btn.textContent = lang === 'en' ? '국문' : 'ENGLISH';
+    document.documentElement.lang = lang === 'en' ? 'en' : 'ko';
+    try { localStorage.setItem('ihpm-lang', lang); } catch (e) {}
+  }
+  var saved = 'ko';
+  try { saved = localStorage.getItem('ihpm-lang') || 'ko'; } catch (e) {}
+  apply(saved === 'en' ? 'en' : 'ko');
+  window.applyLang = apply;
+  btn.addEventListener('click', function(){
+    apply(document.body.classList.contains('en') ? 'ko' : 'en');
+  });
+})();
+</script>
+
+
+</body>
+</html>

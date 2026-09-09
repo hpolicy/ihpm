@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>연구성과 · 보건정책관리연구소(준)</title>
+<meta name="description" content="고려대학교 보건정책관리연구소(준) — 데이터로 정책과 관리의 근거를 만듭니다">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap">
+<style>
+  :root{
+    --ink:#1E2126; --ink-2:#3D434B; --body:#575D66; --muted:#6E747D;
+    --crimson:#C4485C; --crimson-d:#A03348; --crimson-l:#E08494;
+    --paper:#FFFFFF; --sand:#F4F1EC; --sand-2:#F7F5F2;
+    --rule:#E3E5E8; --rule-warm:#E3E0DA; --dark-rule:#31363E; --dark-2:#A2A8B1;
+    --pad:48px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Malgun Gothic',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  a{color:var(--crimson);text-decoration:none}
+  a:hover{color:var(--crimson-d);text-decoration:underline}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 var(--pad)}
+  .en-only{display:none}
+  body.en .ko-only{display:none}
+  body.en .en-only{display:block}
+
+  /* header */
+  .util{background:var(--ink);color:var(--dark-2);border-bottom:1px solid #2A2E35}
+  .util .wrap{display:flex;justify-content:space-between;align-items:center;height:34px;
+    font-size:11.5px;letter-spacing:.04em}
+  .langbtn{background:none;border:1px solid #4A505A;color:#C6CBD2;font:inherit;font-size:11.5px;
+    padding:3px 10px;cursor:pointer;letter-spacing:.06em}
+  .langbtn:hover{border-color:#7E858F;color:#fff}
+  .nav{background:var(--ink);color:#E8E6E3;position:sticky;top:0;z-index:20}
+  .nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;
+    min-height:64px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+  .brand{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .brand b{font-size:18px;font-weight:700;letter-spacing:-.01em}
+  .brand span{font-size:11px;letter-spacing:.1em;color:var(--dark-2)}
+  .menu{display:flex;gap:22px;flex-wrap:wrap;font-size:13.5px}
+  .menu a{color:#C6CBD2}
+  .menu a:hover{color:#fff;text-decoration:none}
+  .menu a.j{color:var(--crimson-l)}
+
+  /* hero */
+  .hero{position:relative;background:var(--ink);overflow:hidden}
+  .hero svg{position:absolute;left:0;top:0;width:100%;height:100%}
+  .hero .wrap{position:relative;padding-top:84px;padding-bottom:88px;max-width:1200px}
+  .eyebrow{font-size:11.5px;letter-spacing:.16em;color:var(--crimson-l);font-weight:500}
+  .hero h1{margin:22px 0 0;font-size:40px;font-weight:700;line-height:1.42;letter-spacing:-.025em;
+    color:#F2F1EF;text-wrap:pretty;max-width:640px}
+  .hero p{margin:22px 0 0;font-size:15px;line-height:1.9;color:#B7BCC4;max-width:520px;text-wrap:pretty}
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+  .btn{padding:12px 24px;font-size:14px;font-weight:500;background:var(--crimson);color:#fff}
+  .btn:hover{background:var(--crimson-d);color:#fff;text-decoration:none}
+  .btn.ghost{background:none;border:1px solid #5A616B;color:#E8E6E3}
+  .btn.ghost:hover{border-color:#9AA1AA;color:#fff}
+
+  /* metrics */
+  .metrics{background:var(--sand);border-bottom:1px solid var(--rule-warm)}
+  .metrics .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+  .metric{padding:24px 0 24px 28px;border-left:1px solid #E0DCD5;display:flex;flex-direction:column;gap:5px}
+  .metric:first-child{padding-left:0;border-left:0}
+  .metric b{font-size:26px;font-weight:700;letter-spacing:-.02em}
+  .metric b i{font-style:normal;font-size:13.5px;font-weight:400;color:var(--muted)}
+  .metric span{font-size:13px;color:var(--muted)}
+  .metric.accent b{color:var(--crimson)}
+
+  /* sections */
+  section{padding:64px 0;border-bottom:1px solid var(--rule)}
+  section.tint{background:var(--sand);border-bottom-color:var(--rule-warm)}
+  .shead{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;
+    flex-wrap:wrap;margin-bottom:30px}
+  .shead h2{margin:0;font-size:23px;font-weight:700;letter-spacing:-.02em}
+  .shead .sub{font-size:13px;color:var(--muted);margin-top:7px}
+  .lead{font-size:16px;line-height:1.95;color:var(--ink-2);max-width:760px;text-wrap:pretty}
+
+  .cols{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:30px}
+  .c7{grid-column:span 7}
+  .c5{grid-column:span 5}
+  .c6{grid-column:span 6}
+
+  ul.plain{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+  ul.plain li{font-size:14px;line-height:1.65;color:var(--body);padding-left:14px;position:relative}
+  ul.plain li::before{content:"·";position:absolute;left:0;color:var(--crimson)}
+
+  /* research cards */
+  .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+  .card{background:var(--sand-2);border-top:3px solid var(--crimson);padding:28px 26px 30px;
+    display:flex;flex-direction:column;gap:14px}
+  .card .kicker{font-size:11.5px;letter-spacing:.1em;color:var(--crimson);font-weight:500}
+  .card h3{margin:0;font-size:18px;font-weight:700;line-height:1.5}
+  .card .foot{margin-top:auto;padding-top:14px;border-top:1px solid var(--rule-warm);
+    display:flex;flex-direction:column;gap:11px}
+  .card .cname{font-size:13.5px;font-weight:500}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{padding:7px 12px;border:1px solid #D8D4CD;background:#fff;font-size:13px;color:var(--ink)}
+  a.chip:hover{border-color:var(--crimson);color:var(--crimson);text-decoration:none}
+  .chip.slot{border-style:dashed;border-color:#C9C6C0;color:var(--muted);background:none}
+
+  /* people */
+  .people{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--rule-warm)}
+  .person{background:var(--paper);padding:20px 22px 22px;display:flex;flex-direction:column;gap:7px}
+  .person .nm{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+  .person .nm b{font-size:16px;font-weight:700;letter-spacing:-.01em}
+  .person .nm span{font-size:12.5px;color:var(--muted)}
+  .person .field{font-size:13.5px;font-weight:500;color:var(--crimson-d)}
+  .person .detail{font-size:13px;line-height:1.65;color:var(--body)}
+  .person.head{background:var(--sand-2)}
+
+  .hpmark{font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-weight:700;letter-spacing:-.005em}
+
+  /* journal */
+  .jbox{background:#fff;border:1px solid var(--rule-warm);padding:22px 22px 24px;
+    display:flex;flex-direction:column;gap:12px}
+  .jrow{padding:9px 0;border-top:1px solid #EDEBE7;font-size:13.5px;line-height:1.6}
+  .jmeta{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .jmeta .lbl{font-size:11px;letter-spacing:.1em;color:var(--muted)}
+
+  /* projects */
+  .projects{display:flex;flex-direction:column}
+  .proj{padding:16px 0;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:6px}
+  .proj .ptitle{font-size:14.5px;font-weight:500;line-height:1.6;text-wrap:pretty}
+  .proj .pmeta{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+  .proj .pmeta span+span{padding-left:14px;border-left:1px solid var(--rule)}
+
+  details.more{border-top:1px solid var(--rule)}
+  details.more>summary{list-style:none;cursor:pointer;padding:14px 0;font-size:13.5px;
+    font-weight:500;color:var(--crimson-d)}
+  details.more>summary::-webkit-details-marker{display:none}
+  details.more>summary::after{content:" ▾"}
+  details.more[open]>summary::after{content:" ▴"}
+  details.more>summary:hover{color:var(--crimson)}
+  details.more .proj:first-child{border-top:1px solid var(--rule)}
+
+  /* activity */
+  .actgroup+.actgroup{margin-top:34px}
+  .actheading{font-size:15px;font-weight:700;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+  .actlist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 34px}
+  .act{display:flex;gap:12px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--rule);
+    font-size:13.5px;line-height:1.6}
+  .act .who{flex:0 0 52px;font-weight:500}
+  .act .what{flex:1 1 auto;display:flex;flex-direction:column;gap:2px}
+  .act .what .org{color:var(--ink-2)}
+  .act .what .role{color:var(--crimson-d);font-size:13px}
+  .act .per{flex:0 0 auto;color:var(--muted);font-size:12.5px;white-space:nowrap}
+
+  /* news */
+  .newsrow{display:flex;gap:16px;align-items:baseline;padding:14px 0;border-top:1px solid var(--rule);
+    font-size:14px;flex-wrap:wrap}
+  .tag{font-size:11.5px;padding:3px 8px;background:#EAEEF1;color:#4C5661}
+  .tag.n{background:#F5E7EA;color:var(--crimson-d)}
+  .newsrow .date{margin-left:auto;color:var(--muted);font-size:13px}
+  .event{background:var(--sand);border-left:3px solid var(--crimson);padding:24px 22px;
+    display:flex;flex-direction:column;gap:14px}
+
+  /* contact + footer */
+  .kv{display:flex;gap:16px;padding:13px 0;border-top:1px solid var(--rule);font-size:14px;line-height:1.7}
+  .kv b{flex:0 0 96px;font-weight:500;color:var(--muted)}
+  footer{background:var(--ink);color:var(--dark-2);font-size:13px;line-height:1.8}
+  footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+    padding-top:32px;padding-bottom:38px}
+  footer b{display:block;color:#E8E6E3;font-weight:500;padding-bottom:6px}
+  footer .links{display:flex;gap:24px;flex-wrap:wrap}
+  footer a{color:var(--dark-2)}
+  footer a:hover{color:#fff}
+  .note{font-size:12.5px;color:var(--muted);margin-top:16px}
+
+  @media (max-width:900px){
+    :root{--pad:28px}
+    .metrics .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .metric{padding-left:20px}
+    .metric:nth-child(3){padding-left:0;border-left:0}
+    .cards{grid-template-columns:1fr}
+    .people{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .actlist{grid-template-columns:1fr}
+    .c7,.c5,.c6{grid-column:span 12}
+    .hero h1{font-size:30px}
+    .nav .wrap{min-height:0}
+    .menu{gap:14px;font-size:13px}
+  }
+  @media (max-width:560px){
+    .metrics .wrap{grid-template-columns:1fr}
+    .metric{padding-left:0;border-left:0;border-top:1px solid #E0DCD5}
+    .metric:first-child{border-top:0}
+    .people{grid-template-columns:1fr}
+  }
+
+  .menu a.on{color:#fff}
+  .pagehead{background:var(--ink);color:#E8E6E3;padding:56px 0 58px}
+  .pagehead h1{margin:0;font-size:32px;font-weight:700;letter-spacing:-.025em;color:#F2F1EF}
+  .pagehead p{margin:14px 0 0;font-size:14.5px;line-height:1.85;color:#B7BCC4;max-width:640px;text-wrap:pretty}
+</style>
+</head>
+<body>
+<div class="util">
+  <div class="wrap">
+    <div class="t" data-ko="KOREA UNIVERSITY · COLLEGE OF HEALTH SCIENCE" data-en="KOREA UNIVERSITY · COLLEGE OF HEALTH SCIENCE">KOREA UNIVERSITY · COLLEGE OF HEALTH SCIENCE</div>
+    <button class="langbtn" id="lang" type="button">ENGLISH</button>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap">
+    <div class="brand">
+      <a href="index.html" style="color:inherit;text-decoration:none"><b class="t" data-ko="보건정책관리연구소(준)" data-en="Institute of Health Policy and Management">보건정책관리연구소(준)</b></a>
+      <span class="t" data-ko="INSTITUTE OF HEALTH POLICY AND MANAGEMENT" data-en="PREPARATORY INSTITUTE · KOREA UNIVERSITY">INSTITUTE OF HEALTH POLICY AND MANAGEMENT</span>
+    </div>
+    <nav class="menu">
+        <a href="index.html#about" class="t" data-ko="연구소 소개" data-en="About">연구소 소개</a>
+        <a href="index.html#research" class="t" data-ko="연구분야·센터" data-en="Research">연구분야·센터</a>
+        <a href="people.html" class="t" data-ko="구성원" data-en="People">구성원</a>
+        <a href="research.html" class="t on" data-ko="연구성과" data-en="Projects">연구성과</a>
+        <a href="https://hpolitics.org" class="j t" target="_blank" rel="noopener" data-ko="Health Politics ↗" data-en="Health Politics ↗">Health Politics ↗</a>
+    </nav>
+  </div>
+</div>
+
+<div class="pagehead">
+  <div class="wrap">
+    <h1 class="t" data-ko="연구성과" data-en="Research and service">연구성과</h1>
+    <p class="t" data-ko="연구위원이 연구책임자로 수행한 교외 연구과제와 학술·정책 활동입니다." data-en="Externally funded projects led by the fellows, and their academic and policy service.">연구위원이 연구책임자로 수행한 교외 연구과제와 학술·정책 활동입니다.</p>
+  </div>
+</div>
+
+<section id="output">
+  <div class="wrap">
+    <div class="shead">
+      <div>
+        <div class="sub t" data-ko="준연구소 운영기간(2025.8.9.~2026.9.6.) 중 연구위원이 연구책임자로 수행한 교외 연구과제 14건" data-en="14 externally funded projects led by fellows as PI or PM during the preparatory period (9 Aug 2025 – 6 Sep 2026)">준연구소 운영기간(2025.8.9.~2026.9.6.) 중 연구위원이 연구책임자로 수행한 교외 연구과제 14건</div>
+      </div>
+    </div>
+    <div>
+      <div class="projects">
+        <div class="proj" style="border-top:2px solid var(--ink)">
+          <div class="ptitle t" data-ko="한·미·일 지역 의료격차 다학제 실증 연구" data-en="Multidisciplinary study of regional healthcare disparities in Korea, the US and Japan">한·미·일 지역 의료격차 다학제 실증 연구</div>
+          <div class="pmeta"><span class="t" data-ko="박성철 · PI" data-en="박성철 · PI">박성철 · PI</span><span class="t" data-ko="한국연구재단" data-en="National Research Foundation">한국연구재단</span><span>2026.09~2029.08</span></div>
+        </div>
+        <div class="proj">
+          <div class="ptitle t" data-ko="GLP-1 체성분 변화 한·영 공동연구" data-en="Korea–UK collaborative study on body composition change with GLP-1">GLP-1 체성분 변화 한·영 공동연구</div>
+          <div class="pmeta"><span class="t" data-ko="오하나 · PI" data-en="오하나 · PI">오하나 · PI</span><span class="t" data-ko="국제공동연구(UCL)" data-en="International collaboration (UCL)">국제공동연구(UCL)</span><span>2026.08~2027.07</span></div>
+        </div>
+        <div class="proj">
+          <div class="ptitle t" data-ko="인도네시아 보건인력 관리체계 개선사업 PMC 용역" data-en="Strengthening health workforce management in Indonesia (PMC)">인도네시아 보건인력 관리체계 개선사업 PMC 용역</div>
+          <div class="pmeta"><span class="t" data-ko="최홍조 · PI" data-en="최홍조 · PI">최홍조 · PI</span><span class="t" data-ko="한국국제협력단" data-en="KOICA">한국국제협력단</span><span>2026.03~2028.12</span></div>
+        </div>
+        <div class="proj">
+          <div class="ptitle t" data-ko="에피소드 기반 분석과 AI 시뮬레이션을 활용한 지역사회 노인의 의료-요양-돌봄 자원배분 구조 분석 및 예측 연구" data-en="Episode-based analysis and AI simulation of care resource allocation for community-dwelling older adults">에피소드 기반 분석과 AI 시뮬레이션을 활용한 지역사회 노인의 의료-요양-돌봄 자원배분 구조 분석 및 예측 연구</div>
+          <div class="pmeta"><span class="t" data-ko="손민성 · PI" data-en="손민성 · PI">손민성 · PI</span><span class="t" data-ko="한국연구재단" data-en="National Research Foundation">한국연구재단</span><span>2026.03~2030.02</span></div>
+        </div>
+        <div class="proj">
+          <div class="ptitle t" data-ko="의료AI 개발·도입·이용 전주기 분석과 임상·사회경제적 효과 및 위험 평가를 통한 근거 기반 확산 전략 도출 실증 연구" data-en="Whole-cycle analysis of medical AI: clinical and socioeconomic effects, risk assessment and diffusion strategy">의료AI 개발·도입·이용 전주기 분석과 임상·사회경제적 효과 및 위험 평가를 통한 근거 기반 확산 전략 도출 실증 연구</div>
+          <div class="pmeta"><span class="t" data-ko="박성철 · PI" data-en="박성철 · PI">박성철 · PI</span><span class="t" data-ko="한국연구재단" data-en="National Research Foundation">한국연구재단</span><span>2026.03~2031.02</span></div>
+        </div>
+        <details class="more">
+          <summary class="t" data-ko="나머지 9건 보기" data-en="Show 9 more projects">나머지 9건 보기</summary>
+          <div class="projects">
+          <div class="proj">
+            <div class="ptitle t" data-ko="CARE-net: 인간-기술-데이터 통합 기반 노쇠고령자 돌봄 솔루션" data-en="CARE-net: integrated human–technology–data care solutions for frail older adults">CARE-net: 인간-기술-데이터 통합 기반 노쇠고령자 돌봄 솔루션</div>
+            <div class="pmeta"><span class="t" data-ko="정혜주 · Co-PI" data-en="정혜주 · Co-PI">정혜주 · Co-PI</span><span class="t" data-ko="보건산업진흥원(한국형 ARPA-H)" data-en="KHIDI (Korean ARPA-H)">보건산업진흥원(한국형 ARPA-H)</span><span>2026.03~2029.02</span></div>
+          </div>
+          <div class="proj">
+            <div class="ptitle t" data-ko="초가공식품 섭취가 식후혈당과 혈당변동성에 미치는 영향" data-en="Ultra-processed food intake, postprandial glucose and glycaemic variability">초가공식품 섭취가 식후혈당과 혈당변동성에 미치는 영향</div>
+            <div class="pmeta"><span class="t" data-ko="오하나 · PI" data-en="오하나 · PI">오하나 · PI</span><span class="t" data-ko="심장대사증후군학회" data-en="Korean Society of CardioMetabolic Syndrome">심장대사증후군학회</span><span>2025.07~2026.06</span></div>
+          </div>
+          <div class="proj">
+            <div class="ptitle t" data-ko="건강도시아틀라스 고도화 연구(HADES)" data-en="Healthy City Atlas development (HADES)">건강도시아틀라스 고도화 연구(HADES)</div>
+            <div class="pmeta"><span class="t" data-ko="정혜주 · PI" data-en="정혜주 · PI">정혜주 · PI</span><span class="t" data-ko="한국연구재단" data-en="National Research Foundation">한국연구재단</span><span>2025.06~2028.05</span></div>
+          </div>
+          <div class="proj">
+            <div class="ptitle t" data-ko="다제내성결핵 단기치료법의 다국가 임상연구(I)" data-en="Multi-country trial of short-course treatment for MDR-TB (I)">다제내성결핵 단기치료법의 다국가 임상연구(I)</div>
+            <div class="pmeta"><span class="t" data-ko="최홍조 · PI" data-en="최홍조 · PI">최홍조 · PI</span><span class="t" data-ko="국립보건연구원" data-en="Korea National Institute of Health">국립보건연구원</span><span>2025.05~2027.12</span></div>
+          </div>
+          <div class="proj">
+            <div class="ptitle t" data-ko="결핵 빅데이터를 활용한 long-term TB 평가 연구" data-en="Long-term tuberculosis outcomes using TB big data">결핵 빅데이터를 활용한 long-term TB 평가 연구</div>
+            <div class="pmeta"><span class="t" data-ko="최홍조 · PI" data-en="최홍조 · PI">최홍조 · PI</span><span class="t" data-ko="국립보건연구원" data-en="Korea National Institute of Health">국립보건연구원</span><span>2025.05~2026.12</span></div>
+          </div>
+          <div class="proj">
+            <div class="ptitle t" data-ko="국내 일반인구의 잠복결핵감염률 모니터링 추정모델 개발" data-en="Estimation model for monitoring latent TB infection in the general population">국내 일반인구의 잠복결핵감염률 모니터링 추정모델 개발</div>
+            <div class="pmeta"><span class="t" data-ko="최홍조 · PI" data-en="최홍조 · PI">최홍조 · PI</span><span class="t" data-ko="질병관리청" data-en="Korea Disease Control and Prevention Agency">질병관리청</span><span>2025.04~2026.04</span></div>
+          </div>
+          <div class="proj">
+            <div class="ptitle t" data-ko="난임 부부의 초가공식품 섭취 및 조절가능 임신 기여요인 규명" data-en="Ultra-processed food intake and modifiable fertility factors among couples with infertility">난임 부부의 초가공식품 섭취 및 조절가능 임신 기여요인 규명</div>
+            <div class="pmeta"><span class="t" data-ko="오하나 · PI" data-en="오하나 · PI">오하나 · PI</span><span class="t" data-ko="한국연구재단" data-en="National Research Foundation">한국연구재단</span><span>2025.03~2028.02</span></div>
+          </div>
+          <div class="proj">
+            <div class="ptitle t" data-ko="고령자의 연속적인 통합돌봄을 위한 AI 로봇 기반 디지털 돌봄 플랫폼" data-en="AI robot-based digital care platform for continuous integrated care of older adults">고령자의 연속적인 통합돌봄을 위한 AI 로봇 기반 디지털 돌봄 플랫폼</div>
+            <div class="pmeta"><span class="t" data-ko="정혜주 · Co-PI" data-en="정혜주 · Co-PI">정혜주 · Co-PI</span><span class="t" data-ko="보건산업진흥원(한국형 ARPA-H)" data-en="KHIDI (Korean ARPA-H)">보건산업진흥원(한국형 ARPA-H)</span><span>2024.11~2025.12</span></div>
+          </div>
+          <div class="proj" style="border-bottom:1px solid var(--rule)">
+            <div class="ptitle t" data-ko="결핵 정밀 의학을 위한 인구집단 역학의 기여" data-en="Population epidemiology for tuberculosis precision medicine">결핵 정밀 의학을 위한 인구집단 역학의 기여</div>
+            <div class="pmeta"><span class="t" data-ko="최홍조 · PI" data-en="최홍조 · PI">최홍조 · PI</span><span class="t" data-ko="한국연구재단" data-en="National Research Foundation">한국연구재단</span><span>2023.06~2026.02</span></div>
+          </div>
+          </div>
+        </details>
+      </div>
+      </div>
+        <p class="note t" data-ko="※ 연구위원이 연구책임자(PI·PM)로 수행한 교외 연구과제 기준. 공동연구원 참여 과제와 교내 지원 과제는 제외." data-en="Externally funded projects led by a fellow as PI or PM; projects with co-investigator participation and internally funded projects are excluded.">※ 연구위원이 연구책임자(PI·PM)로 수행한 교외 연구과제 기준. 공동연구원 참여 과제와 교내 지원 과제는 제외.</p>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="activity" class="tint">
+  <div class="wrap">
+    <div class="shead">
+      <div>
+        <h2 class="t" data-ko="학술·정책 활동" data-en="Academic and policy service">학술·정책 활동</h2>
+        <div class="sub t" data-ko="연구위원이 맡고 있거나 최근 맡은 학술지 편집진·학술단체 임원·정부 및 공공기관 위원회 (2026년 9월 기준)" data-en="Editorial, learned-society and public advisory appointments held by the fellows (as of September 2026)">연구위원이 맡고 있거나 최근 맡은 학술지 편집진·학술단체 임원·정부 및 공공기관 위원회 (2026년 9월 기준)</div>
+      </div>
+    </div>
+      <div class="actgroup">
+        <div class="actheading t" data-ko="국내외 학술지 편집진" data-en="Journal editorships">국내외 학술지 편집진</div>
+        <div class="actlist">
+          <div class="act">
+            <div class="who">정혜주</div>
+            <div class="what"><span class="org">Health Politics</span><span class="role t" data-ko="Co-Editor-in-Chief" data-en="Co-Editor-in-Chief">Co-Editor-in-Chief</span></div>
+            <div class="per">2026.3~</div>
+          </div>
+          <div class="act">
+            <div class="who">최홍조</div>
+            <div class="what"><span class="org">BMC Public Health</span><span class="role t" data-ko="Assistant Editor" data-en="Assistant Editor">Assistant Editor</span></div>
+            <div class="per">2026.3~</div>
+          </div>
+          <div class="act">
+            <div class="who">최홍조</div>
+            <div class="what"><span class="org">한국사회정책</span><span class="role t" data-ko="편집위원장" data-en="Editor-in-Chief">편집위원장</span></div>
+            <div class="per">2024.7~2026.6</div>
+          </div>
+          <div class="act">
+            <div class="who">김록리</div>
+            <div class="what"><span class="org">Epidemiology and Health</span><span class="role t" data-ko="부편집위원장" data-en="Associate Editor">부편집위원장</span></div>
+            <div class="per">2024.1~</div>
+          </div>
+          <div class="act">
+            <div class="who">김록리</div>
+            <div class="what"><span class="org">Social Science & Medicine</span><span class="role t" data-ko="편집위원" data-en="Editorial Board">편집위원</span></div>
+            <div class="per">2021.9~</div>
+          </div>
+          <div class="act">
+            <div class="who">김진호</div>
+            <div class="what"><span class="org">Social Science & Medicine</span><span class="role t" data-ko="편집위원" data-en="Editorial Board">편집위원</span></div>
+            <div class="per">2024.1~2026</div>
+          </div>
+          <div class="act">
+            <div class="who">김진호</div>
+            <div class="what"><span class="org">Society and Mental Health</span><span class="role t" data-ko="편집위원" data-en="Editorial Board">편집위원</span></div>
+            <div class="per">2022.1~</div>
+          </div>
+          <div class="act">
+            <div class="who">김진호</div>
+            <div class="what"><span class="org">Journal of Research on Adolescence</span><span class="role t" data-ko="Consulting Editor" data-en="Consulting Editor">Consulting Editor</span></div>
+            <div class="per">2025~</div>
+          </div>
+          <div class="act">
+            <div class="who">김진호</div>
+            <div class="what"><span class="org">한국인구학</span><span class="role t" data-ko="편집위원" data-en="Editorial Board">편집위원</span></div>
+            <div class="per">2024.1~</div>
+          </div>
+          <div class="act">
+            <div class="who">오하나</div>
+            <div class="what"><span class="org">Journal of Nutrition</span><span class="role t" data-ko="특집호 편집위원" data-en="Special Issue Guest Editor">특집호 편집위원</span></div>
+            <div class="per">2026.3~2026.10</div>
+          </div>
+          <div class="act">
+            <div class="who">오하나</div>
+            <div class="what"><span class="org">Journal of Preventive Medicine and Public Health</span><span class="role t" data-ko="편집위원" data-en="Editorial Board">편집위원</span></div>
+            <div class="per">2024.4~2025.12</div>
+          </div>
+          <div class="act">
+            <div class="who">박금령</div>
+            <div class="what"><span class="org">국제사회보장리뷰</span><span class="role t" data-ko="편집위원" data-en="Editorial Board">편집위원</span></div>
+            <div class="per">2026.2~</div>
+          </div>
+          <div class="act">
+            <div class="who">박금령</div>
+            <div class="what"><span class="org">한국사회학회</span><span class="role t" data-ko="편집위원" data-en="Editorial Board">편집위원</span></div>
+            <div class="per">2026.3~</div>
+          </div>
+          <div class="act">
+            <div class="who">이환희</div>
+            <div class="what"><span class="org">한국환경보건학회</span><span class="role t" data-ko="편집위원" data-en="Editorial Board">편집위원</span></div>
+            <div class="per">2025.3~</div>
+          </div>
+        </div>
+      </div>
+      <div class="actgroup">
+        <div class="actheading t" data-ko="학술단체 임원" data-en="Learned society offices">학술단체 임원</div>
+        <div class="actlist">
+          <div class="act">
+            <div class="who">정혜주</div>
+            <div class="what"><span class="org">IPSA RC25 (Politics of Health Policy)</span><span class="role t" data-ko="공동의장" data-en="Co-Chair">공동의장</span></div>
+            <div class="per">2025.8~2027.7</div>
+          </div>
+          <div class="act">
+            <div class="who">정혜주</div>
+            <div class="what"><span class="org">한국사회정책학회</span><span class="role t" data-ko="회장" data-en="President">회장</span></div>
+            <div class="per">2025.7~2026.6</div>
+          </div>
+          <div class="act">
+            <div class="who">정혜주</div>
+            <div class="what"><span class="org">비판과 대안을 위한 건강정책학회</span><span class="role t" data-ko="부회장" data-en="Vice President">부회장</span></div>
+            <div class="per">2024.6~</div>
+          </div>
+          <div class="act">
+            <div class="who">이환희</div>
+            <div class="what"><span class="org">한국 환경보건센터 연합회</span><span class="role t" data-ko="부회장" data-en="Vice President">부회장</span></div>
+            <div class="per">2026.3~</div>
+          </div>
+          <div class="act">
+            <div class="who">오하나</div>
+            <div class="what"><span class="org">한국영양학회</span><span class="role t" data-ko="글로벌영양위원장" data-en="Chair, Global Nutrition Committee">글로벌영양위원장</span></div>
+            <div class="per">2026.1~</div>
+          </div>
+          <div class="act">
+            <div class="who">최홍조</div>
+            <div class="what"><span class="org">비판과 대안을 위한 건강정책학회</span><span class="role t" data-ko="기획이사" data-en="Director of Planning">기획이사</span></div>
+            <div class="per">2026.1~2026.12</div>
+          </div>
+          <div class="act">
+            <div class="who">김록리</div>
+            <div class="what"><span class="org">국제보건의료학회</span><span class="role t" data-ko="법제윤리이사" data-en="Director of Law and Ethics">법제윤리이사</span></div>
+            <div class="per">2023.7~</div>
+          </div>
+          <div class="act">
+            <div class="who">김진호</div>
+            <div class="what"><span class="org">한국보건사회학회</span><span class="role t" data-ko="학술이사" data-en="Director of Academic Affairs">학술이사</span></div>
+            <div class="per">2025.5~</div>
+          </div>
+          <div class="act">
+            <div class="who">김진호</div>
+            <div class="what"><span class="org">국제보건의료학회</span><span class="role t" data-ko="이사" data-en="Director">이사</span></div>
+            <div class="per">2021.7~2025</div>
+          </div>
+          <div class="act">
+            <div class="who">오하나</div>
+            <div class="what"><span class="org">한국영양학회</span><span class="role t" data-ko="국제협력이사" data-en="Director of International Cooperation">국제협력이사</span></div>
+            <div class="per">2024.1~2025.12</div>
+          </div>
+          <div class="act">
+            <div class="who">오하나</div>
+            <div class="what"><span class="org">심장대사증후군학회</span><span class="role t" data-ko="학술위원" data-en="Academic Committee">학술위원</span></div>
+            <div class="per">2024.4~2025.12</div>
+          </div>
+          <div class="act">
+            <div class="who">박금령</div>
+            <div class="what"><span class="org">한국보건행정학회</span><span class="role t" data-ko="총무위원" data-en="General Affairs Committee">총무위원</span></div>
+            <div class="per">2026.1~</div>
+          </div>
+          <div class="act">
+            <div class="who">박금령</div>
+            <div class="what"><span class="org">한국건강형평성학회</span><span class="role t" data-ko="교육위원" data-en="Education Committee">교육위원</span></div>
+            <div class="per">2026.1~</div>
+          </div>
+          <div class="act">
+            <div class="who">이환희</div>
+            <div class="what"><span class="org">한국역학회</span><span class="role t" data-ko="교육위원" data-en="Education Committee">교육위원</span></div>
+            <div class="per">2025.3~</div>
+          </div>
+        </div>
+      </div>
+      <div class="actgroup">
+        <div class="actheading t" data-ko="정부·공공기관 위원회" data-en="Government and public advisory committees">정부·공공기관 위원회</div>
+        <div class="actlist">
+          <div class="act">
+            <div class="who">최홍조</div>
+            <div class="what"><span class="org">코로나19 예방접종 피해보상 재심위원회</span><span class="role t" data-ko="위원장" data-en="Chair">위원장</span></div>
+            <div class="per">2025.11~2027.11</div>
+          </div>
+          <div class="act">
+            <div class="who">정혜주</div>
+            <div class="what"><span class="org">기획재정부 재정정책자문회의</span><span class="role t" data-ko="위원" data-en="Member">위원</span></div>
+            <div class="per">2023~2027</div>
+          </div>
+          <div class="act">
+            <div class="who">정혜주</div>
+            <div class="what"><span class="org">보건복지부 중앙의료급여심의위원회</span><span class="role t" data-ko="위원" data-en="Member">위원</span></div>
+            <div class="per">2017~</div>
+          </div>
+          <div class="act">
+            <div class="who">정혜주</div>
+            <div class="what"><span class="org">보건복지부 정책연구심의위원회</span><span class="role t" data-ko="위원" data-en="Member">위원</span></div>
+            <div class="per">2022~2026</div>
+          </div>
+          <div class="act">
+            <div class="who">정혜주</div>
+            <div class="what"><span class="org">건강보험심사평가원 미래혁신통합위원회</span><span class="role t" data-ko="위원" data-en="Member">위원</span></div>
+            <div class="per">2026~</div>
+          </div>
+          <div class="act">
+            <div class="who">정혜주</div>
+            <div class="what"><span class="org">한국보건사회연구원 연구자문위원회</span><span class="role t" data-ko="위원" data-en="Member">위원</span></div>
+            <div class="per">2026~</div>
+          </div>
+          <div class="act">
+            <div class="who">정혜주</div>
+            <div class="what"><span class="org">대한민국건강도시협의회 학술위원회</span><span class="role t" data-ko="위원" data-en="Member">위원</span></div>
+            <div class="per">2023~2026</div>
+          </div>
+          <div class="act">
+            <div class="who">최홍조</div>
+            <div class="what"><span class="org">질병관리청 결핵전문위원회</span><span class="role t" data-ko="전문위원" data-en="Expert Member">전문위원</span></div>
+            <div class="per">2023.2~</div>
+          </div>
+          <div class="act">
+            <div class="who">김진호</div>
+            <div class="what"><span class="org">보건복지부 자문위원회</span><span class="role t" data-ko="위원" data-en="Member">위원</span></div>
+            <div class="per">2020.12~</div>
+          </div>
+          <div class="act">
+            <div class="who">김진호</div>
+            <div class="what"><span class="org">통계청 자문위원회</span><span class="role t" data-ko="위원" data-en="Member">위원</span></div>
+            <div class="per">2024.6~2025</div>
+          </div>
+          <div class="act">
+            <div class="who">김혜영</div>
+            <div class="what"><span class="org">한국연구재단</span><span class="role t" data-ko="책임전문위원" data-en="Senior Expert Reviewer">책임전문위원</span></div>
+            <div class="per">2023.3~</div>
+          </div>
+          <div class="act">
+            <div class="who">김혜영</div>
+            <div class="what"><span class="org">한국과학기술기획평가원</span><span class="role t" data-ko="평가위원" data-en="Evaluation Committee">평가위원</span></div>
+            <div class="per">2023.3~</div>
+          </div>
+          <div class="act">
+            <div class="who">김혜영</div>
+            <div class="what"><span class="org">농림축산검역본부 질병진단기술자문위원회</span><span class="role t" data-ko="자문위원" data-en="Advisory Member">자문위원</span></div>
+            <div class="per">2023.3~</div>
+          </div>
+          <div class="act">
+            <div class="who">이환희</div>
+            <div class="what"><span class="org">질병관리청 보건의료연구자원정보센터 데이터위원회</span><span class="role t" data-ko="위원" data-en="Member">위원</span></div>
+            <div class="per">2024.7~</div>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <b class="t" data-ko="고려대학교 보건정책관리연구소(준)" data-en="Institute of Health Policy and Management, Korea University">고려대학교 보건정책관리연구소(준)</b>
+      <div class="t" data-ko="02841 서울특별시 성북구 안암로 145 하나과학관 B동 364호" data-en="Hana Science Hall B, Room 364, 145 Anam-ro, Seongbuk-gu, Seoul 02841, Korea">02841 서울특별시 성북구 안암로 145 하나과학관 B동 364호</div>
+    </div>
+    <div class="links">
+      <a href="https://hpolitics.org" target="_blank" rel="noopener">Health Politics</a>
+      <a href="https://hpm.korea.ac.kr" target="_blank" rel="noopener"><span class="t" data-ko="보건정책관리학부" data-en="School of Health Policy and Management">보건정책관리학부</span></a>
+      <a href="https://health.korea.ac.kr" target="_blank" rel="noopener"><span class="t" data-ko="보건과학대학" data-en="College of Health Science">보건과학대학</span></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn = document.getElementById('lang');
+  var nodes = document.querySelectorAll('.t');
+  function apply(lang){
+    document.body.classList.toggle('en', lang === 'en');
+    for (var i = 0; i < nodes.length; i++){
+      var v = nodes[i].getAttribute(lang === 'en' ? 'data-en' : 'data-ko');
+      if (v !== null) nodes[i].innerHTML = v;
+    }
+    btn.textContent = lang === 'en' ? '국문' : 'ENGLISH';
+    document.documentElement.lang = lang === 'en' ? 'en' : 'ko';
+    try { localStorage.setItem('ihpm-lang', lang); } catch (e) {}
+  }
+  var saved = 'ko';
+  try { saved = localStorage.getItem('ihpm-lang') || 'ko'; } catch (e) {}
+  apply(saved === 'en' ? 'en' : 'ko');
+  window.applyLang = apply;
+  btn.addEventListener('click', function(){
+    apply(document.body.classList.contains('en') ? 'ko' : 'en');
+  });
+})();
+</script>
+
+
+</body>
+</html>

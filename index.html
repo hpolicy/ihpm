@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>보건정책관리연구소(준) · 고려대학교</title>
+<meta name="description" content="고려대학교 보건정책관리연구소(준) — 데이터로 정책과 관리의 근거를 만듭니다">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap">
+<style>
+  :root{
+    --ink:#1E2126; --ink-2:#3D434B; --body:#575D66; --muted:#6E747D;
+    --crimson:#C4485C; --crimson-d:#A03348; --crimson-l:#E08494;
+    --paper:#FFFFFF; --sand:#F4F1EC; --sand-2:#F7F5F2;
+    --rule:#E3E5E8; --rule-warm:#E3E0DA; --dark-rule:#31363E; --dark-2:#A2A8B1;
+    --pad:48px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Malgun Gothic',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  a{color:var(--crimson);text-decoration:none}
+  a:hover{color:var(--crimson-d);text-decoration:underline}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 var(--pad)}
+  .en-only{display:none}
+  body.en .ko-only{display:none}
+  body.en .en-only{display:block}
+
+  /* header */
+  .util{background:var(--ink);color:var(--dark-2);border-bottom:1px solid #2A2E35}
+  .util .wrap{display:flex;justify-content:space-between;align-items:center;height:34px;
+    font-size:11.5px;letter-spacing:.04em}
+  .langbtn{background:none;border:1px solid #4A505A;color:#C6CBD2;font:inherit;font-size:11.5px;
+    padding:3px 10px;cursor:pointer;letter-spacing:.06em}
+  .langbtn:hover{border-color:#7E858F;color:#fff}
+  .nav{background:var(--ink);color:#E8E6E3;position:sticky;top:0;z-index:20}
+  .nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;
+    min-height:64px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+  .brand{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .brand b{font-size:18px;font-weight:700;letter-spacing:-.01em}
+  .brand span{font-size:11px;letter-spacing:.1em;color:var(--dark-2)}
+  .menu{display:flex;gap:22px;flex-wrap:wrap;font-size:13.5px}
+  .menu a{color:#C6CBD2}
+  .menu a:hover{color:#fff;text-decoration:none}
+  .menu a.j{color:var(--crimson-l)}
+
+  /* hero */
+  .hero{position:relative;background:var(--ink);overflow:hidden}
+  .hero svg{position:absolute;left:0;top:0;width:100%;height:100%}
+  .hero .wrap{position:relative;padding-top:84px;padding-bottom:88px;max-width:1200px}
+  .eyebrow{font-size:11.5px;letter-spacing:.16em;color:var(--crimson-l);font-weight:500}
+  .hero h1{margin:22px 0 0;font-size:40px;font-weight:700;line-height:1.42;letter-spacing:-.025em;
+    color:#F2F1EF;text-wrap:pretty;max-width:640px}
+  .hero p{margin:22px 0 0;font-size:15px;line-height:1.9;color:#B7BCC4;max-width:520px;text-wrap:pretty}
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+  .btn{padding:12px 24px;font-size:14px;font-weight:500;background:var(--crimson);color:#fff}
+  .btn:hover{background:var(--crimson-d);color:#fff;text-decoration:none}
+  .btn.ghost{background:none;border:1px solid #5A616B;color:#E8E6E3}
+  .btn.ghost:hover{border-color:#9AA1AA;color:#fff}
+
+  /* metrics */
+  .metrics{background:var(--sand);border-bottom:1px solid var(--rule-warm)}
+  .metrics .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+  .metric{padding:24px 0 24px 28px;border-left:1px solid #E0DCD5;display:flex;flex-direction:column;gap:5px}
+  .metric:first-child{padding-left:0;border-left:0}
+  .metric b{font-size:26px;font-weight:700;letter-spacing:-.02em}
+  .metric b i{font-style:normal;font-size:13.5px;font-weight:400;color:var(--muted)}
+  .metric span{font-size:13px;color:var(--muted)}
+  .metric.accent b{color:var(--crimson)}
+
+  /* sections */
+  section{padding:64px 0;border-bottom:1px solid var(--rule)}
+  section.tint{background:var(--sand);border-bottom-color:var(--rule-warm)}
+  .shead{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;
+    flex-wrap:wrap;margin-bottom:30px}
+  .shead h2{margin:0;font-size:23px;font-weight:700;letter-spacing:-.02em}
+  .shead .sub{font-size:13px;color:var(--muted);margin-top:7px}
+  .lead{font-size:16px;line-height:1.95;color:var(--ink-2);max-width:760px;text-wrap:pretty}
+
+  .cols{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:30px}
+  .c7{grid-column:span 7}
+  .c5{grid-column:span 5}
+  .c6{grid-column:span 6}
+
+  ul.plain{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+  ul.plain li{font-size:14px;line-height:1.65;color:var(--body);padding-left:14px;position:relative}
+  ul.plain li::before{content:"·";position:absolute;left:0;color:var(--crimson)}
+
+  /* research cards */
+  .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+  .card{background:var(--sand-2);border-top:3px solid var(--crimson);padding:28px 26px 30px;
+    display:flex;flex-direction:column;gap:14px}
+  .card .kicker{font-size:11.5px;letter-spacing:.1em;color:var(--crimson);font-weight:500}
+  .card h3{margin:0;font-size:18px;font-weight:700;line-height:1.5}
+  .card .foot{margin-top:auto;padding-top:14px;border-top:1px solid var(--rule-warm);
+    display:flex;flex-direction:column;gap:11px}
+  .card .cname{font-size:13.5px;font-weight:500}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{padding:7px 12px;border:1px solid #D8D4CD;background:#fff;font-size:13px;color:var(--ink)}
+  a.chip:hover{border-color:var(--crimson);color:var(--crimson);text-decoration:none}
+  .chip.slot{border-style:dashed;border-color:#C9C6C0;color:var(--muted);background:none}
+
+  /* people */
+  .people{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--rule-warm)}
+  .person{background:var(--paper);padding:20px 22px 22px;display:flex;flex-direction:column;gap:7px}
+  .person .nm{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+  .person .nm b{font-size:16px;font-weight:700;letter-spacing:-.01em}
+  .person .nm span{font-size:12.5px;color:var(--muted)}
+  .person .field{font-size:13.5px;font-weight:500;color:var(--crimson-d)}
+  .person .detail{font-size:13px;line-height:1.65;color:var(--body)}
+  .person.head{background:var(--sand-2)}
+
+  .hpmark{font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-weight:700;letter-spacing:-.005em}
+
+  /* journal */
+  .jbox{background:#fff;border:1px solid var(--rule-warm);padding:22px 22px 24px;
+    display:flex;flex-direction:column;gap:12px}
+  .jrow{padding:8px 0;border-top:1px solid #EDEBE7;font-size:13px;line-height:1.55}
+  .jmeta{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .jauth{display:inline-block;white-space:nowrap;font-size:11.5px;color:var(--muted);margin-left:8px}
+  .jmeta .lbl{font-size:11px;letter-spacing:.1em;color:var(--muted)}
+
+  /* projects */
+  .projects{display:flex;flex-direction:column}
+  .proj{padding:16px 0;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:6px}
+  .proj .ptitle{font-size:14.5px;font-weight:500;line-height:1.6;text-wrap:pretty}
+  .proj .pmeta{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+  .proj .pmeta span+span{padding-left:14px;border-left:1px solid var(--rule)}
+
+  details.more{border-top:1px solid var(--rule)}
+  details.more>summary{list-style:none;cursor:pointer;padding:14px 0;font-size:13.5px;
+    font-weight:500;color:var(--crimson-d)}
+  details.more>summary::-webkit-details-marker{display:none}
+  details.more>summary::after{content:" ▾"}
+  details.more[open]>summary::after{content:" ▴"}
+  details.more>summary:hover{color:var(--crimson)}
+  details.more .proj:first-child{border-top:1px solid var(--rule)}
+
+  /* activity */
+  .actgroup+.actgroup{margin-top:34px}
+  .actheading{font-size:15px;font-weight:700;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+  .actlist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 34px}
+  .act{display:flex;gap:12px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--rule);
+    font-size:13.5px;line-height:1.6}
+  .act .who{flex:0 0 52px;font-weight:500}
+  .act .what{flex:1 1 auto;display:flex;flex-direction:column;gap:2px}
+  .act .what .org{color:var(--ink-2)}
+  .act .what .role{color:var(--crimson-d);font-size:13px}
+  .act .per{flex:0 0 auto;color:var(--muted);font-size:12.5px;white-space:nowrap}
+
+  /* news */
+  .newsrow{display:flex;gap:16px;align-items:baseline;padding:14px 0;border-top:1px solid var(--rule);
+    font-size:14px;flex-wrap:wrap}
+  .tag{font-size:11.5px;padding:3px 8px;background:#EAEEF1;color:#4C5661}
+  .tag.n{background:#F5E7EA;color:var(--crimson-d)}
+  .newsrow .date{margin-left:auto;color:var(--muted);font-size:13px}
+  .event{background:var(--sand);border-left:3px solid var(--crimson);padding:24px 22px;
+    display:flex;flex-direction:column;gap:14px}
+
+  /* contact + footer */
+  .kv{display:flex;gap:16px;padding:13px 0;border-top:1px solid var(--rule);font-size:14px;line-height:1.7}
+  .kv b{flex:0 0 96px;font-weight:500;color:var(--muted)}
+  footer{background:var(--ink);color:var(--dark-2);font-size:13px;line-height:1.8}
+  footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+    padding-top:32px;padding-bottom:38px}
+  footer b{display:block;color:#E8E6E3;font-weight:500;padding-bottom:6px}
+  footer .links{display:flex;gap:24px;flex-wrap:wrap}
+  footer a{color:var(--dark-2)}
+  footer a:hover{color:#fff}
+  .note{font-size:12.5px;color:var(--muted);margin-top:16px}
+
+  @media (max-width:900px){
+    :root{--pad:28px}
+    .metrics .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .metric{padding-left:20px}
+    .metric:nth-child(3){padding-left:0;border-left:0}
+    .cards{grid-template-columns:1fr}
+    .people{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .actlist{grid-template-columns:1fr}
+    .c7,.c5,.c6{grid-column:span 12}
+    .hero h1{font-size:30px}
+    .nav .wrap{min-height:0}
+    .menu{gap:14px;font-size:13px}
+  }
+  @media (max-width:560px){
+    .metrics .wrap{grid-template-columns:1fr}
+    .metric{padding-left:0;border-left:0;border-top:1px solid #E0DCD5}
+    .metric:first-child{border-top:0}
+    .people{grid-template-columns:1fr}
+  }
+
+  .menu a.on{color:#fff}
+  .pagehead{background:var(--ink);color:#E8E6E3;padding:56px 0 58px}
+  .pagehead h1{margin:0;font-size:32px;font-weight:700;letter-spacing:-.025em;color:#F2F1EF}
+  .pagehead p{margin:14px 0 0;font-size:14.5px;line-height:1.85;color:#B7BCC4;max-width:640px;text-wrap:pretty}
+</style>
+</head>
+<body>
+<div class="util">
+  <div class="wrap">
+    <div class="t" data-ko="KOREA UNIVERSITY · COLLEGE OF HEALTH SCIENCE" data-en="KOREA UNIVERSITY · COLLEGE OF HEALTH SCIENCE">KOREA UNIVERSITY · COLLEGE OF HEALTH SCIENCE</div>
+    <button class="langbtn" id="lang" type="button">ENGLISH</button>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap">
+    <div class="brand">
+      <a href="index.html" style="color:inherit;text-decoration:none"><b class="t" data-ko="보건정책관리연구소(준)" data-en="Institute of Health Policy and Management">보건정책관리연구소(준)</b></a>
+      <span class="t" data-ko="INSTITUTE OF HEALTH POLICY AND MANAGEMENT" data-en="PREPARATORY INSTITUTE · KOREA UNIVERSITY">INSTITUTE OF HEALTH POLICY AND MANAGEMENT</span>
+    </div>
+    <nav class="menu">
+        <a href="index.html#about" class="t on" data-ko="연구소 소개" data-en="About">연구소 소개</a>
+        <a href="index.html#research" class="t" data-ko="연구분야·센터" data-en="Research">연구분야·센터</a>
+        <a href="people.html" class="t" data-ko="구성원" data-en="People">구성원</a>
+        <a href="research.html" class="t" data-ko="연구성과" data-en="Projects">연구성과</a>
+        <a href="https://hpolitics.org" class="j t" target="_blank" rel="noopener" data-ko="Health Politics ↗" data-en="Health Politics ↗">Health Politics ↗</a>
+    </nav>
+  </div>
+</div>
+
+<div class="hero">
+  <svg viewBox="0 0 1200 440" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="hzone" x1="0" y1="1" x2="0" y2="0">
+        <stop offset="0%" stop-color="#C4485C" stop-opacity="0.30"></stop>
+        <stop offset="100%" stop-color="#C4485C" stop-opacity="0.02"></stop>
+      </linearGradient>
+      <linearGradient id="hveil" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#1E2126" stop-opacity="0.98"></stop>
+        <stop offset="52%" stop-color="#1E2126" stop-opacity="0.82"></stop>
+        <stop offset="100%" stop-color="#1E2126" stop-opacity="0.30"></stop>
+      </linearGradient>
+    </defs>
+    <g stroke="#31363E" stroke-width="1">
+      <line x1="0" y1="88" x2="1200" y2="88"></line>
+      <line x1="0" y1="176" x2="1200" y2="176"></line>
+      <line x1="0" y1="264" x2="1200" y2="264"></line>
+      <line x1="0" y1="352" x2="1200" y2="352"></line>
+      <line x1="150" y1="0" x2="150" y2="440"></line>
+      <line x1="300" y1="0" x2="300" y2="440"></line>
+      <line x1="450" y1="0" x2="450" y2="440"></line>
+      <line x1="600" y1="0" x2="600" y2="440"></line>
+      <line x1="750" y1="0" x2="750" y2="440"></line>
+      <line x1="900" y1="0" x2="900" y2="440"></line>
+      <line x1="1050" y1="0" x2="1050" y2="440"></line>
+    </g>
+    <path d="M0 396 C 90 380, 150 344, 240 330 C 330 316, 390 336, 480 300 C 570 264, 630 200, 720 186 C 810 172, 870 208, 960 176 C 1050 144, 1120 96, 1200 84 L 1200 440 L 0 440 Z" fill="url(#hzone)"></path>
+    <path d="M0 396 C 90 380, 150 344, 240 330 C 330 316, 390 336, 480 300 C 570 264, 630 200, 720 186 C 810 172, 870 208, 960 176 C 1050 144, 1120 96, 1200 84" fill="none" stroke="#C4485C" stroke-width="2" stroke-opacity="0.85"></path>
+    <path d="M0 424 C 100 416, 170 402, 260 392 C 350 382, 420 392, 510 368 C 600 344, 660 318, 750 302 C 840 286, 900 300, 990 274 C 1080 248, 1140 214, 1200 200" fill="none" stroke="#7E858F" stroke-width="1.5" stroke-opacity="0.5"></path>
+    <g fill="#C4485C" fill-opacity="0.9">
+      <circle cx="240" cy="330" r="4"></circle>
+      <circle cx="480" cy="300" r="4"></circle>
+      <circle cx="720" cy="186" r="5"></circle>
+      <circle cx="960" cy="176" r="4"></circle>
+    </g>
+    <g fill="#A2A8B1" fill-opacity="0.35">
+      <circle cx="330" cy="128" r="3"></circle>
+      <circle cx="405" cy="212" r="2.5"></circle>
+      <circle cx="855" cy="96" r="3"></circle>
+      <circle cx="1110" cy="150" r="2.5"></circle>
+      <circle cx="1035" cy="252" r="3"></circle>
+    </g>
+    <rect x="0" y="0" width="1200" height="440" fill="url(#hveil)"></rect>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow">EVIDENCE FOR HEALTH POLICY AND MANAGEMENT</div>
+    <h1 class="t" data-ko="데이터로 정책과<br>관리의 근거를 만듭니다" data-en="Evidence for policy<br>and for management">데이터로 정책과<br>관리의 근거를 만듭니다</h1>
+    <p class="t" data-ko="보건의료 빅데이터와 정책분석을 결합해 제도 설계와 조직·재정·인력 관리의 근거를 제공합니다." data-en="We combine health data with policy analysis to inform both the design of health systems and the management of their organisations, financing and workforce.">보건의료 빅데이터와 정책분석을 결합해 제도 설계와 조직·재정·인력 관리의 근거를 제공합니다.</p>
+    <div class="btns">
+      <a class="btn t" href="#about" data-ko="연구소 소개" data-en="About the Institute">연구소 소개</a>
+      <a class="btn ghost t" href="#output" data-ko="연구성과 보기" data-en="Research projects">연구성과 보기</a>
+    </div>
+  </div>
+</div>
+
+<div class="metrics">
+  <div class="wrap">
+    <div class="metric"><b>11<i>인</i></b><span class="t" data-ko="연구위원(전임교원)" data-en="Research fellows (full-time faculty)">연구위원(전임교원)</span></div>
+    <div class="metric"><b>3<i>개</i></b><span class="t" data-ko="설치 예정 연구센터" data-en="Research centres (to be established)">설치 예정 연구센터</span></div>
+    <div class="metric"><b>14<i>건</i></b><span class="t" data-ko="연구책임자로 수행한 교외 과제" data-en="Externally funded projects led as PI/PM">연구책임자로 수행한 교외 과제</span></div>
+    <div class="metric accent"><b>1<i>종</i></b><span class="t" data-ko="편집사무국 운영 국제학술지" data-en="International journal (editorial office)">편집사무국 운영 국제학술지</span></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="shead">
+      <div>
+        <h2 class="t" data-ko="연구소 소개" data-en="About the Institute">연구소 소개</h2>
+        <div class="sub t" data-ko="고려대학교 보건과학대학 보건정책관리학부" data-en="School of Health Policy and Management, College of Health Science, Korea University">고려대학교 보건과학대학 보건정책관리학부</div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="c7">
+        <p class="lead t" data-ko="보건정책관리연구소(준)는 데이터 기반 보건정책 연구를 통하여 근거중심 의사결정을 지원하고, 지속가능하고 포용적인 보건의료체계 구축을 위한 전략을 개발하며, 보건정책관리 분야의 연구역량 강화 및 차세대 연구인재 양성에 기여함을 목적으로 합니다." data-en="The Institute supports evidence-based decision-making through data-driven health policy research, develops strategies for a sustainable and inclusive health system, and builds research capacity and the next generation of scholars in health policy and management.">보건정책관리연구소(준)는 데이터 기반 보건정책 연구를 통하여 근거중심 의사결정을 지원하고, 지속가능하고 포용적인 보건의료체계 구축을 위한 전략을 개발하며, 보건정책관리 분야의 연구역량 강화 및 차세대 연구인재 양성에 기여함을 목적으로 합니다.</p>
+        <p class="note t" data-ko="※ 현재 준연구소로 운영 중이며, 부설연구기관 설립 절차가 진행 중입니다." data-en="Note: currently operating as a preparatory institute; the formal establishment procedure is under way.">※ 현재 준연구소로 운영 중이며, 부설연구기관 설립 절차가 진행 중입니다.</p>
+      </div>
+      <div class="c5">
+        <div class="sub" style="font-size:13px;color:var(--muted);margin-bottom:12px">
+          <span class="t" data-ko="주요 사업" data-en="Activities">주요 사업</span>
+        </div>
+        <ul class="plain">
+          <li class="t" data-ko="보건정책·보건행정 및 건강형평성 분야의 학술연구와 정책연구" data-en="Academic and policy research in health policy, health administration and health equity">보건정책·보건행정 및 건강형평성 분야의 학술연구와 정책연구</li>
+          <li class="t" data-ko="국내외 연구용역의 수탁 및 공동연구 수행" data-en="Commissioned and collaborative research, domestic and international">국내외 연구용역의 수탁 및 공동연구 수행</li>
+          <li class="t" data-ko="학술대회·세미나·포럼·워크숍 및 콜로퀴엄 개최" data-en="Conferences, seminars, forums, workshops and colloquia">학술대회·세미나·포럼·워크숍 및 콜로퀴엄 개최</li>
+          <li class="t" data-ko="연구결과의 발간 및 학술지 편집사무국 운영" data-en="Publication of research and operation of a journal editorial office">연구결과의 발간 및 학술지 편집사무국 운영</li>
+          <li class="t" data-ko="연구인력의 교육·훈련 및 연구방법론 지원" data-en="Training of researchers and methodological support">연구인력의 교육·훈련 및 연구방법론 지원</li>
+          <li class="t" data-ko="국내외 연구기관 및 국제기구와의 학술교류·협력" data-en="Academic exchange with research institutions and international organisations">국내외 연구기관 및 국제기구와의 학술교류·협력</li>
+          <li class="t" data-ko="연구데이터베이스의 구축 및 관리" data-en="Development and management of research databases">연구데이터베이스의 구축 및 관리</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <div class="shead">
+      <div>
+        <h2 class="t" data-ko="3대 연구분야와 연구센터" data-en="Research areas and centres">3대 연구분야와 연구센터</h2>
+        <div class="sub t" data-ko="연구원 중복 참여 허용 · 연구센터는 설립 후 최초 운영위원회 의결로 설치" data-en="Fellows may join more than one centre · Centres to be established by the first steering committee after formal establishment">연구원 중복 참여 허용 · 연구센터는 설립 후 최초 운영위원회 의결로 설치</div>
+      </div>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="kicker">RESEARCH AREA 01</div>
+        <h3 class="t" data-ko="데이터 기반<br>보건정책 전략 수립" data-en="Data-driven<br>health policy strategy">데이터 기반<br>보건정책 전략 수립</h3>
+        <ul class="plain">
+          <li class="t" data-ko="보건의료 빅데이터 분석 및 정책 활용" data-en="Analysis and policy use of health big data">보건의료 빅데이터 분석 및 정책 활용</li>
+          <li class="t" data-ko="인공지능·기계학습 기반 정책 예측모델" data-en="AI and machine-learning policy prediction models">인공지능·기계학습 기반 정책 예측모델</li>
+          <li class="t" data-ko="실시간 정책 모니터링·평가 체계" data-en="Real-time policy monitoring and evaluation">실시간 정책 모니터링·평가 체계</li>
+          <li class="t" data-ko="혼합연구방법론 기반 실행연구" data-en="Mixed-methods implementation research">혼합연구방법론 기반 실행연구</li>
+        </ul>
+        <div class="foot">
+          <div class="cname t" data-ko="보건정책데이터연구센터" data-en="Centre for Health Policy Data">보건정책데이터연구센터</div>
+          <div class="chips">
+            <span class="chip">건강도시아틀라스 ↗</span>
+            <span class="chip slot t" data-ko="[링크 추가]" data-en="[add link]">[링크 추가]</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="kicker">RESEARCH AREA 02</div>
+        <h3 class="t" data-ko="지속가능<br>보건의료체계 관리" data-en="Sustainable<br>health system management">지속가능<br>보건의료체계 관리</h3>
+        <ul class="plain">
+          <li class="t" data-ko="건강보험 재정관리 및 지속가능 재원조달" data-en="Health insurance finance and sustainable funding">건강보험 재정관리 및 지속가능 재원조달</li>
+          <li class="t" data-ko="보건의료 인력 수급계획·적정배치" data-en="Health workforce planning and distribution">보건의료 인력 수급계획·적정배치</li>
+          <li class="t" data-ko="보건의료 조직 거버넌스·리더십" data-en="Organisational governance and leadership">보건의료 조직 거버넌스·리더십</li>
+          <li class="t" data-ko="의료서비스 질 관리·환자안전" data-en="Quality of care and patient safety">의료서비스 질 관리·환자안전</li>
+        </ul>
+        <div class="foot">
+          <div class="cname t" data-ko="보건의료체계연구센터" data-en="Centre for Health System Research">보건의료체계연구센터</div>
+          <div class="chips">
+            <span class="chip slot t" data-ko="[연계 사이트 링크]" data-en="[add link]">[연계 사이트 링크]</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="kicker">RESEARCH AREA 03</div>
+        <h3 class="t" data-ko="건강형평성 및<br>포용적 건강전략" data-en="Health equity and<br>inclusive health strategy">건강형평성 및<br>포용적 건강전략</h3>
+        <ul class="plain">
+          <li class="t" data-ko="사회경제적 건강 결정요인 분석" data-en="Socioeconomic determinants of health">사회경제적 건강 결정요인 분석</li>
+          <li class="t" data-ko="지역·인구집단별 건강형평성 정책" data-en="Equity policy across regions and populations">지역·인구집단별 건강형평성 정책</li>
+          <li class="t" data-ko="젠더·교차성 관점의 건강불평등" data-en="Gender and intersectional health inequality">젠더·교차성 관점의 건강불평등</li>
+          <li class="t" data-ko="노동자 건강보호·산업보건 정책혁신" data-en="Worker health protection and occupational health policy">노동자 건강보호·산업보건 정책혁신</li>
+        </ul>
+        <div class="foot">
+          <div class="cname t" data-ko="건강형평성연구센터" data-en="Centre for Health Equity">건강형평성연구센터</div>
+          <div class="chips">
+            <span class="chip slot t" data-ko="[연계 사이트 링크]" data-en="[add link]">[연계 사이트 링크]</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="journal" class="tint">
+  <div class="wrap">
+    <div class="cols">
+      <div class="c5">
+        <div class="kicker" style="color:var(--crimson);font-size:11.5px;letter-spacing:.14em;font-weight:500">
+          <span class="t" data-ko="편집사무국" data-en="EDITORIAL OFFICE">편집사무국</span>
+        </div>
+        <h2 class="hpmark" style="margin:15px 0 0;font-size:31px;letter-spacing:0">Health Politics</h2>
+        <p class="t" style="font-size:13.5px;line-height:1.85;color:var(--body);max-width:400px;margin-top:15px" data-ko="연구소 편집사무국이 국제학술지 Health Politics의 투고 접수·심사 진행과 발간 실무를 지원합니다. 편집방침과 게재 결정은 편집위원회가 독립적으로 수행합니다." data-en="The Institute's editorial office supports submission handling, peer review administration and production for the international journal Health Politics. Editorial policy and publication decisions rest with the editorial board.">연구소 편집사무국이 국제학술지 Health Politics의 투고 접수·심사 진행과 발간 실무를 지원합니다. 편집방침과 게재 결정은 편집위원회가 독립적으로 수행합니다.</p>
+        <div class="chips" style="margin-top:18px">
+          <a class="chip" href="https://hpolitics.org" target="_blank" rel="noopener">hpolitics.org ↗</a>
+          <a class="chip" href="https://submit.hpolitics.org" target="_blank" rel="noopener"><span class="t" data-ko="투고 ↗" data-en="Submit ↗">투고 ↗</span></a>
+          <a class="chip" href="https://hpolitics.org/authors/call_for_papers.php" target="_blank" rel="noopener"><span class="t" data-ko="Call for Papers ↗" data-en="Call for Papers ↗">Call for Papers ↗</span></a>
+        </div>
+      </div>
+      <div class="c7">
+        <div class="jbox">
+          <div class="jmeta">
+            <span class="lbl">CURRENT ISSUE</span>
+            <span style="font-size:12.5px;color:var(--muted)">Diamond Open Access · eISSN 3092-5517</span>
+          </div>
+          <div id="jissue" style="font-size:16px;font-weight:700;letter-spacing:-.01em">Vol. 1, No. 2 <span style="font-size:13px;font-weight:400;color:var(--muted)">· 2026. 6. 30.</span></div>
+          <div id="jlist">
+            <div class="jrow"><a href="https://doi.org/10.66534/hp.2026.0006" target="_blank" rel="noopener" style="color:inherit">Health Systems as Contested Ground</a><span class="jauth">Haejoo Chung · Carles Muntaner</span></div>
+            <div class="jrow"><a href="https://doi.org/10.66534/hp.2026.0007" target="_blank" rel="noopener" style="color:inherit">Neoliberalism: The politics of health writ large</a><span class="jauth">Clare Bambra · Ted Schrecker</span></div>
+            <div class="jrow"><a href="https://doi.org/10.66534/hp.2026.0008" target="_blank" rel="noopener" style="color:inherit">Mapping “Health Politics”: Two Conceptual Traditions, 1976–2025</a><span class="jauth">Haejoo Chung et al.</span></div>
+            <div class="jrow"><a href="https://doi.org/10.66534/hp.2026.0009" target="_blank" rel="noopener" style="color:inherit">Beyond National Health Insurance: The Contested Politics of Long-Term Care in Taiwan</a><span class="jauth">Fang-Yi Huang</span></div>
+            <div class="jrow"><a href="https://doi.org/10.66534/hp.2026.0010" target="_blank" rel="noopener" style="color:inherit">The Co-evolution of Politics and the Healthcare System in South Korea</a><span class="jauth">Young-jeon Shin</span></div>
+            <div class="jrow"><a href="https://doi.org/10.66534/hp.2026.0011" target="_blank" rel="noopener" style="color:inherit">Healthcare Politics in Japan: Differentiated Policy Dynamics across Multiple Arenas</a><span class="jauth">Ryozo Matsuda</span></div>
+          </div>
+        </div>
+        <div class="jbox" style="margin-top:16px;flex-direction:row;justify-content:space-between;align-items:center;padding:18px 22px">
+          <div style="font-size:13.5px;color:var(--body)">
+            <span class="t" data-ko="투고·심사 문의" data-en="Editorial enquiries">투고·심사 문의</span>
+            <a href="mailto:journal@hpolitics.org">journal@hpolitics.org</a>
+          </div>
+          <a href="https://hpolitics.org" target="_blank" rel="noopener" style="font-size:13px">
+            <span class="t" data-ko="지난호 전체 보기 ↗" data-en="All issues ↗">지난호 전체 보기 ↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap">
+    <div>
+      <b class="t" data-ko="고려대학교 보건정책관리연구소(준)" data-en="Institute of Health Policy and Management, Korea University">고려대학교 보건정책관리연구소(준)</b>
+      <div class="t" data-ko="02841 서울특별시 성북구 안암로 145 하나과학관 B동 364호" data-en="Hana Science Hall B, Room 364, 145 Anam-ro, Seongbuk-gu, Seoul 02841, Korea">02841 서울특별시 성북구 안암로 145 하나과학관 B동 364호</div>
+    </div>
+    <div class="links">
+      <a href="https://hpolitics.org" target="_blank" rel="noopener">Health Politics</a>
+      <a href="https://hpm.korea.ac.kr" target="_blank" rel="noopener"><span class="t" data-ko="보건정책관리학부" data-en="School of Health Policy and Management">보건정책관리학부</span></a>
+      <a href="https://health.korea.ac.kr" target="_blank" rel="noopener"><span class="t" data-ko="보건과학대학" data-en="College of Health Science">보건과학대학</span></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn = document.getElementById('lang');
+  var nodes = document.querySelectorAll('.t');
+  function apply(lang){
+    document.body.classList.toggle('en', lang === 'en');
+    for (var i = 0; i < nodes.length; i++){
+      var v = nodes[i].getAttribute(lang === 'en' ? 'data-en' : 'data-ko');
+      if (v !== null) nodes[i].innerHTML = v;
+    }
+    btn.textContent = lang === 'en' ? '국문' : 'ENGLISH';
+    document.documentElement.lang = lang === 'en' ? 'en' : 'ko';
+    try { localStorage.setItem('ihpm-lang', lang); } catch (e) {}
+  }
+  var saved = 'ko';
+  try { saved = localStorage.getItem('ihpm-lang') || 'ko'; } catch (e) {}
+  apply(saved === 'en' ? 'en' : 'ko');
+  window.applyLang = apply;
+  btn.addEventListener('click', function(){
+    apply(document.body.classList.contains('en') ? 'ko' : 'en');
+  });
+})();
+</script>
+
+<script>
+/* Health Politics 최신호 자동 갱신 — Crossref (eISSN 3092-5517) */
+(function(){
+  var issueEl=document.getElementById('jissue'), listEl=document.getElementById('jlist');
+  if(!issueEl||!listEl||!window.fetch) return;
+  fetch('https://api.crossref.org/journals/3092-5517/works?rows=100&sort=published&order=desc&select=title,author,issued,volume,issue,DOI,URL&mailto=journal@hpolitics.org')
+  .then(function(r){return r.ok?r.json():Promise.reject();}).then(function(d){
+    var items=(d&&d.message&&d.message.items)||[]; if(!items.length) return;
+    var top=items[0];
+    var same=items.filter(function(x){return x.volume===top.volume&&x.issue===top.issue;});
+    if(!same.length) same=[top];
+    same.sort(function(a,b){return (a.DOI||'')<(b.DOI||'')?-1:1;});
+    var dp=(top.issued&&top.issued['date-parts']&&top.issued['date-parts'][0])||[];
+    var date=dp.length?dp[0]+'. '+(dp[1]||1)+'. '+(dp[2]||1)+'.':'';
+    issueEl.innerHTML='Vol. '+(top.volume||'')+', No. '+(top.issue||'')+(date?' <span style="font-size:13px;font-weight:400;color:var(--muted)">· '+date+'</span>':'');
+    function authors(it){
+      var a=it.author||[]; if(!a.length) return '';
+      function nm(x){ return ((x.given?x.given+' ':'')+(x.family||x.name||'')).trim(); }
+      if(a.length===1) return nm(a[0]);
+      if(a.length===2) return nm(a[0])+' · '+nm(a[1]);
+      return nm(a[0])+' et al.';
+    }
+    function row(it){
+      var div=document.createElement('div'); div.className='jrow';
+      var a=document.createElement('a'); a.href=it.URL||('https://doi.org/'+it.DOI);
+      a.target='_blank'; a.rel='noopener'; a.style.color='inherit';
+      a.textContent=(it.title&&it.title[0])||''; div.appendChild(a);
+      var au=authors(it);
+      if(au){ var sp=document.createElement('span'); sp.className='jauth'; sp.textContent=au; div.appendChild(sp); }
+      return div;
+    }
+    listEl.innerHTML='';
+    same.forEach(function(it){ listEl.appendChild(row(it)); });
+    if(window.applyLang) window.applyLang(document.body.classList.contains('en')?'en':'ko');
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>
