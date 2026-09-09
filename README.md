@@ -8,7 +8,7 @@
 |---|---|
 | `index.html` | 홈 — 소개, 연구분야·연구센터, Health Politics 편집사무국 |
 | `people.html` | 구성원 — 연구위원 11인과 연구분야 |
-| `research.html` | 연구성과 — 교외 연구과제 14건 |
+| `research.html` | 연구과제 — 교외 연구과제 14건 |
 | `favicon.ico` · `favicon-32.png` · `apple-touch-icon.png` | 브라우저 탭·북마크·모바일 홈화면 아이콘 |
 | `.nojekyll` | GitHub Pages의 Jekyll 처리를 끔 |
 
