@@ -9,7 +9,7 @@
 | `index.html` | 홈 — 소개, 연구분야·연구센터, Health Politics 편집사무국 |
 | `people.html` | 구성원 — 연구위원 11인과 연구분야 |
 | `research.html` | 연구성과 — 교외 연구과제 14건 |
-| `favicon.svg` · `favicon.ico` · `apple-touch-icon.png` | 브라우저 탭·북마크·모바일 홈화면 아이콘 |
+| `favicon.ico` · `favicon-32.png` · `apple-touch-icon.png` | 브라우저 탭·북마크·모바일 홈화면 아이콘 |
 | `.nojekyll` | GitHub Pages의 Jekyll 처리를 끔 |
 
 세 파일은 각각 완결된 HTML이며, 공통 스타일과 국·영문 전환 스크립트가 파일마다 들어 있음. 한 파일의 디자인을 바꾸면 나머지 두 파일도 같이 고쳐야 함.
@@ -45,5 +45,5 @@
 
 ## 남은 사항
 
-- 영문 성명 표기 — 정혜주 교수(Haejoo Chung) 외 10인은 국문으로 두었음. 확정되면 `data-en` 값에 반영.
+- 영문 성명은 설립신청서 연구업적서의 표기를 이름-성 순으로 통일함. 오하나 교수는 본인 확인을 거쳐 Hannah Oh로 표기함.
 - 논문 목록은 아직 없음. 연구위원 11인의 ORCID를 모으면 Crossref에서 자동으로 목록을 만들 수 있음.
