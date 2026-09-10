@@ -9,7 +9,10 @@
 | `index.html` | 홈 — 소개, 연구분야·연구센터, Health Politics 편집사무국 |
 | `people.html` | 구성원 — 연구위원 11인과 연구분야 |
 | `research.html` | 연구과제 — 교외 연구과제 14건 |
+| `publications.html` | 논문 — 연구위원 ORCID에서 자동 수집 |
+| `service.html` | 대외활동 — 학술지 편집진·학술단체 임원·정부 위원회 |
 | `favicon.ico` · `favicon-32.png` · `apple-touch-icon.png` | 브라우저 탭·북마크·모바일 홈화면 아이콘 |
+| `CNAME` | 커스텀 도메인 `ihpm.korea.ac.kr` (DNS 등록 완료 후 효력) |
 | `.nojekyll` | GitHub Pages의 Jekyll 처리를 끔 |
 
 세 파일은 각각 완결된 HTML이며, 공통 스타일과 국·영문 전환 스크립트가 파일마다 들어 있음. 한 파일의 디자인을 바꾸면 나머지 두 파일도 같이 고쳐야 함.
@@ -23,10 +26,12 @@
 
 ## 학교 도메인 연결 (정식 연구소 승인 후)
 
-1. 정보전산처에서 서브도메인(예: `ihpm.korea.ac.kr`)을 배정받음.
-2. 그 도메인의 DNS에 CNAME 레코드를 `<계정>.github.io` 로 지정해 달라고 요청.
-3. 저장소 최상위에 `CNAME` 파일을 만들고 도메인만 한 줄 적음 (예: `ihpm.korea.ac.kr`).
-4. `Settings → Pages → Custom domain`에 같은 도메인을 입력하고 **Enforce HTTPS**를 켬.
+1. 정보전산처에 `ihpm.korea.ac.kr`의 CNAME 레코드를 `hpolicy.github.io` 로 등록 요청 (신청 완료).
+2. DNS 반영 확인 후 `Settings → Pages → Custom domain`에 `ihpm.korea.ac.kr` 입력.
+3. 인증서 발급이 끝나면 **Enforce HTTPS** 체크.
+4. `CNAME` 파일은 저장소에 이미 포함되어 있음. Pages 설정에서 도메인을 입력하면 GitHub이 같은 내용으로 유지함.
+
+※ DNS가 아직 안 잡힌 상태에서 Custom domain을 입력하면 "domain does not resolve" 경고가 뜸. 등록이 반영될 때까지(보통 수십 분~하루) 기다렸다 다시 시도하면 됨.
 
 ## 내용 고치기
 
@@ -46,4 +51,5 @@
 ## 남은 사항
 
 - 영문 성명은 설립신청서 연구업적서의 표기를 이름-성 순으로 통일함. 오하나 교수는 본인 확인을 거쳐 Hannah Oh로 표기함.
-- 논문 목록은 아직 없음. 연구위원 11인의 ORCID를 모으면 Crossref에서 자동으로 목록을 만들 수 있음.
+- 논문 목록은 연구위원 11인의 ORCID(pub.orcid.org)에서 페이지 열람 시 자동 수집함. 준연구소 설립(2025년 8월) 이후 학술지 논문만 표시하며, 공저 논문은 1편으로 계산함.
+- 누락 논문이 있으면 해당 연구위원이 본인 ORCID에 등록하면 자동 반영됨. 홈페이지 파일은 고칠 필요 없음.
