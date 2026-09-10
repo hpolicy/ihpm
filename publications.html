@@ -319,8 +319,11 @@
   if(!list||!window.fetch) return;
   var SINCE_Y=2025, SINCE_M=8;
   var IDS=['0000-0002-2661-4161','0000-0002-8576-8195','0000-0003-2043-2575','0000-0002-8368-3032','0000-0002-4675-4612','0000-0002-9864-3957','0000-0002-7546-9685','0000-0001-8853-7061','0000-0001-7748-5622','0000-0001-5723-9061','0000-0003-0696-9421'], NAMES={'0000-0002-2661-4161':{ko:'정혜주',en:'Haejoo Chung'},'0000-0002-8576-8195':{ko:'최만규',en:'Mankyu Choi'},'0000-0003-2043-2575':{ko:'김혜영',en:'Hae-Young Kim'},'0000-0002-8368-3032':{ko:'오하나',en:'Hannah Oh'},'0000-0002-4675-4612':{ko:'김진호',en:'Jinho Kim'},'0000-0002-9864-3957':{ko:'김록리',en:'Rockli Kim'},'0000-0002-7546-9685':{ko:'박성철',en:'Sungchul Park'},'0000-0001-8853-7061':{ko:'최홍조',en:'Hongjo Choi'},'0000-0001-7748-5622':{ko:'손민성',en:'Minsung Sohn'},'0000-0001-5723-9061':{ko:'이환희',en:'Whanhee Lee'},'0000-0003-0696-9421':{ko:'박금령',en:'Gum-Ryeong Park'}};
-  var works={}, missing=[];
-  function key(w){ return w.doi ? 'doi:'+w.doi.toLowerCase() : 'ti:'+w.title.toLowerCase().replace(/[^a-z0-9]/g,'').slice(0,80); }
+  var works={}, diag={};
+  /* DOI가 없으면 제목으로 중복을 가림. 공백·문장부호만 걷어내고 글자는 그대로 두어야
+     국문 제목이 빈 문자열이 되지 않음 */
+  function slug(t){ return String(t).toLowerCase().replace(/[\s.,:;!?'"“”‘’()\[\]{}<>\/\\|·…∙•\-–—_~]/g,'').slice(0,120); }
+  function key(w){ return w.doi ? 'doi:'+w.doi.toLowerCase() : 'ti:'+slug(w.title); }
   function pick(g){
     /* 한 그룹(동일 논문)의 여러 출처를 훑어 가장 완전한 정보를 모음 */
     var ss=g['work-summary']||[]; if(!ss.length) return null;
@@ -338,17 +341,21 @@
         if(!doi && (x['external-id-type']||'').toLowerCase()==='doi') doi=x['external-id-value']||'';
       });
     }
-    if(!isArticle || !title || !y) return null;
-    return {title:title, journal:journal, year:y, month:m, doi:doi, who:[]};
+    return {art:isArticle, dated:!!y,
+            w:(isArticle&&title&&y)?{title:title,journal:journal,year:y,month:m,doi:doi,who:[]}:null};
   }
   function pull(id){
     return fetch('https://pub.orcid.org/v3.0/'+id+'/works',{headers:{'Accept':'application/json'}})
       .then(function(r){ return r.ok?r.json():Promise.reject(); })
       .then(function(d){
+        var st=diag[id]={total:(d.group||[]).length, art:0, kept:0, err:false};
         (d.group||[]).forEach(function(g){
-          var w=pick(g); if(!w) return;
+          var r=pick(g);
+          if(r.art) st.art++;
+          var w=r.w; if(!w) return;
           if(w.year<SINCE_Y) return;
           if(w.year===SINCE_Y && w.month && w.month<SINCE_M) return;
+          st.kept++;
           var k=key(w);
           if(works[k]){
             if(works[k].who.indexOf(id)<0) works[k].who.push(id);
@@ -356,7 +363,7 @@
             if(!works[k].doi) works[k].doi=w.doi;
           } else { w.who=[id]; works[k]=w; }
         });
-      }).catch(function(){ missing.push(id); });
+      }).catch(function(){ diag[id]={total:0,art:0,kept:0,err:true}; });
   }
   Promise.all(IDS.map(pull)).then(function(){
     var all=Object.keys(works).map(function(k){ return works[k]; });
@@ -453,14 +460,30 @@
     }
 
     /* ORCID에 공개 논문이 없는 연구위원 표시 */
-    /* 점검용 — 주소 끝에 ?check 를 붙였을 때만 보임 */
-    var none=IDS.filter(function(id){ return !got[id]; });
-    if(none.length && /[?&]check\b/.test(location.search)){
+    /* 점검용 — 주소 끝에 ?check 를 붙였을 때만 보임 (방문자에게는 나타나지 않음) */
+    if(/[?&]check\b/.test(location.search)){
       var nm=document.getElementById('pubnote');
       if(nm){
-        nm.setAttribute('data-ko','※ '+none.map(function(id){ return NAMES[id].ko; }).join(' · ')+' 연구위원은 ORCID에 공개 등록된 해당 기간 논문이 없어 목록에 나타나지 않습니다. 본인 ORCID에 논문을 추가하고 공개(Everyone)로 설정하면 자동으로 반영됩니다.');
-        nm.setAttribute('data-en','Note: no publicly visible ORCID records for this period were found for '+none.map(function(id){ return NAMES[id].en; }).join(', ')+'. Entries appear automatically once added to their own ORCID record with public visibility.');
-        nm.textContent = en()? nm.getAttribute('data-en') : nm.getAttribute('data-ko');
+        var h='<b style="display:block;margin-bottom:8px;color:var(--ink)">ORCID 수집 점검</b>'
+          + '<table style="border-collapse:collapse;font-size:12.5px">'
+          + '<tr style="color:var(--muted)"><td style="padding:2px 14px 6px 0">연구위원</td>'
+          + '<td style="padding:2px 14px 6px 0">ORCID 등록</td>'
+          + '<td style="padding:2px 14px 6px 0">학술지 논문</td>'
+          + '<td style="padding:2px 0 6px 0">기간 내</td></tr>';
+        IDS.forEach(function(id){
+          var d=diag[id]||{total:0,art:0,kept:0,err:true};
+          h+='<tr><td style="padding:2px 14px 2px 0">'+NAMES[id].ko+'</td>'
+           + '<td style="padding:2px 14px 2px 0">'+(d.err?'조회 실패':d.total)+'</td>'
+           + '<td style="padding:2px 14px 2px 0">'+(d.err?'-':d.art)+'</td>'
+           + '<td style="padding:2px 0 2px 0">'+(d.err?'-':d.kept)+'</td></tr>';
+        });
+        h+='</table><div style="margin-top:8px;color:var(--muted)">'
+         + '「ORCID 등록」은 그 분 ORCID에 있는 전체 항목 수, 「학술지 논문」은 그중 journal-article로 등록된 수, '
+         + '「기간 내」는 2025년 8월 이후로 목록에 실린 수입니다. 등록 수 자체가 적으면 ORCID를 채우셔야 하고, '
+         + '등록은 많은데 학술지 논문이 적으면 유형이 다르게 등록된 것입니다.</div>';
+        nm.removeAttribute('data-ko'); nm.removeAttribute('data-en');
+        nm.className='note';
+        nm.innerHTML=h;
         nm.style.display='block';
       }
     }
