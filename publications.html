@@ -197,7 +197,18 @@
   .pagehead h1{margin:0;font-size:32px;font-weight:700;letter-spacing:-.025em;color:#F2F1EF}
   .pagehead p{margin:14px 0 0;font-size:14.5px;line-height:1.85;color:#B7BCC4;max-width:640px;text-wrap:pretty}
 
-  #publist{border-top:2px solid var(--ink)}
+  .pubfilter{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 26px}
+  .fchip{padding:6px 12px;border:1px solid #D8D4CD;background:#fff;font:inherit;font-size:13px;
+    color:var(--ink);cursor:pointer;line-height:1.5}
+  .fchip:hover{border-color:var(--crimson);color:var(--crimson)}
+  .fchip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+  .fchip i{font-style:normal;color:var(--muted);font-size:12px;margin-left:5px}
+  .fchip.on i{color:#9AA1AA}
+  .pubyear{display:flex;align-items:baseline;gap:10px;padding:26px 0 9px;
+    border-bottom:2px solid var(--ink)}
+  .pubyear:first-child{padding-top:0}
+  .pubyear .y{font-size:18px;font-weight:700;letter-spacing:-.02em}
+  .pubyear .yn{font-size:12.5px;color:var(--muted)}
   .pub{padding:13px 0;border-bottom:1px solid var(--rule);font-size:13.5px;line-height:1.6}
   .pub .pt{color:var(--ink)}
   .pub .pj{display:block;font-size:12.5px;color:var(--muted);margin-top:3px}
@@ -249,7 +260,9 @@
         <div class="sub t" id="pubcount" data-ko="ORCID에서 불러오는 중입니다…" data-en="Loading from ORCID…">ORCID에서 불러오는 중입니다…</div>
       </div>
     </div>
+    <div class="pubfilter" id="pubfilter" style="display:none"></div>
     <div id="publist"></div>
+    <p class="note t" id="pubnote" style="display:none"></p>
     <p class="note t" data-ko="※ 공동 저술 논문은 한 편으로 계산합니다. 목록은 각 연구위원이 ORCID에 등록한 기록을 따르므로, 누락된 논문은 해당 연구위원이 ORCID에 추가하면 자동으로 반영됩니다." data-en="Co-authored papers are counted once. The list follows each fellow&#39;s own ORCID record; missing items appear automatically once added there.">※ 공동 저술 논문은 한 편으로 계산합니다. 목록은 각 연구위원이 ORCID에 등록한 기록을 따르므로, 누락된 논문은 해당 연구위원이 ORCID에 추가하면 자동으로 반영됩니다.</p>
   </div>
 </section>
@@ -282,6 +295,7 @@
     }
     btn.textContent = lang === 'en' ? '국문' : 'ENGLISH';
     document.documentElement.lang = lang === 'en' ? 'en' : 'ko';
+    try { document.dispatchEvent(new CustomEvent('langchange')); } catch (e) {}
     try { localStorage.setItem('ihpm-lang', lang); } catch (e) {}
   }
   var saved = 'ko';
@@ -300,38 +314,49 @@
 <script>
 /* 논문 목록 — 연구위원 ORCID 기록에서 수집 */
 (function(){
-  var list=document.getElementById('publist'), cnt=document.getElementById('pubcount');
+  var list=document.getElementById('publist'), cnt=document.getElementById('pubcount'),
+      bar=document.getElementById('pubfilter');
   if(!list||!window.fetch) return;
   var SINCE_Y=2025, SINCE_M=8;
   var IDS=['0000-0002-2661-4161','0000-0002-8576-8195','0000-0003-2043-2575','0000-0002-8368-3032','0000-0002-4675-4612','0000-0002-9864-3957','0000-0002-7546-9685','0000-0001-8853-7061','0000-0001-7748-5622','0000-0001-5723-9061','0000-0003-0696-9421'], NAMES={'0000-0002-2661-4161':{ko:'정혜주',en:'Haejoo Chung'},'0000-0002-8576-8195':{ko:'최만규',en:'Mankyu Choi'},'0000-0003-2043-2575':{ko:'김혜영',en:'Hae-Young Kim'},'0000-0002-8368-3032':{ko:'오하나',en:'Hannah Oh'},'0000-0002-4675-4612':{ko:'김진호',en:'Jinho Kim'},'0000-0002-9864-3957':{ko:'김록리',en:'Rockli Kim'},'0000-0002-7546-9685':{ko:'박성철',en:'Sungchul Park'},'0000-0001-8853-7061':{ko:'최홍조',en:'Hongjo Choi'},'0000-0001-7748-5622':{ko:'손민성',en:'Minsung Sohn'},'0000-0001-5723-9061':{ko:'이환희',en:'Whanhee Lee'},'0000-0003-0696-9421':{ko:'박금령',en:'Gum-Ryeong Park'}};
-  var works={};
+  var works={}, missing=[];
   function key(w){ return w.doi ? 'doi:'+w.doi.toLowerCase() : 'ti:'+w.title.toLowerCase().replace(/[^a-z0-9]/g,'').slice(0,80); }
+  function pick(g){
+    /* 한 그룹(동일 논문)의 여러 출처를 훑어 가장 완전한 정보를 모음 */
+    var ss=g['work-summary']||[]; if(!ss.length) return null;
+    var isArticle=false, title='', journal='', doi='', y=0, m=0;
+    for(var i=0;i<ss.length;i++){
+      var s=ss[i];
+      if((s.type||'').toLowerCase().indexOf('journal-article')>=0) isArticle=true;
+      if(!title && s.title && s.title.title) title=s.title.title.value||'';
+      if(!journal && s['journal-title']) journal=s['journal-title'].value||'';
+      var pd=s['publication-date']||{};
+      var yy=pd.year?parseInt(pd.year.value,10):0;
+      var mm=pd.month?parseInt(pd.month.value,10):0;
+      if(yy && (!y || yy>y || (yy===y && mm>m))){ y=yy; m=mm; }
+      ((s['external-ids']||{})['external-id']||[]).forEach(function(x){
+        if(!doi && (x['external-id-type']||'').toLowerCase()==='doi') doi=x['external-id-value']||'';
+      });
+    }
+    if(!isArticle || !title || !y) return null;
+    return {title:title, journal:journal, year:y, month:m, doi:doi, who:[]};
+  }
   function pull(id){
     return fetch('https://pub.orcid.org/v3.0/'+id+'/works',{headers:{'Accept':'application/json'}})
       .then(function(r){ return r.ok?r.json():Promise.reject(); })
       .then(function(d){
         (d.group||[]).forEach(function(g){
-          var s=(g['work-summary']||[])[0]; if(!s) return;
-          var type=(s.type||'').toLowerCase();
-          if(type.indexOf('journal-article')<0) return;
-          var pd=s['publication-date']||{};
-          var y=pd.year?parseInt(pd.year.value,10):0;
-          var m=pd.month?parseInt(pd.month.value,10):0;
-          if(!y || y<SINCE_Y) return;
-          if(y===SINCE_Y && m && m<SINCE_M) return;
-          var title=s.title && s.title.title ? s.title.title.value : '';
-          if(!title) return;
-          var journal=s['journal-title'] ? s['journal-title'].value : '';
-          var doi='';
-          ((s['external-ids']||{})['external-id']||[]).forEach(function(x){
-            if((x['external-id-type']||'').toLowerCase()==='doi') doi=x['external-id-value'];
-          });
-          var w={title:title, journal:journal, year:y, month:m, doi:doi, who:[]};
+          var w=pick(g); if(!w) return;
+          if(w.year<SINCE_Y) return;
+          if(w.year===SINCE_Y && w.month && w.month<SINCE_M) return;
           var k=key(w);
-          if(works[k]){ if(works[k].who.indexOf(id)<0) works[k].who.push(id); if(!works[k].journal) works[k].journal=journal; }
-          else { w.who=[id]; works[k]=w; }
+          if(works[k]){
+            if(works[k].who.indexOf(id)<0) works[k].who.push(id);
+            if(!works[k].journal) works[k].journal=w.journal;
+            if(!works[k].doi) works[k].doi=w.doi;
+          } else { w.who=[id]; works[k]=w; }
         });
-      }).catch(function(){});
+      }).catch(function(){ missing.push(id); });
   }
   Promise.all(IDS.map(pull)).then(function(){
     var all=Object.keys(works).map(function(k){ return works[k]; });
@@ -344,26 +369,104 @@
       return;
     }
     all.sort(function(a,b){ return (b.year-a.year) || (b.month-a.month) || a.title.localeCompare(b.title); });
-    var en=document.body.classList.contains('en');
-    cnt.setAttribute('data-ko','준연구소 설립 이후 '+all.length+'편');
-    cnt.setAttribute('data-en',all.length+' articles since August 2025');
-    cnt.textContent = en ? (all.length+' articles since August 2025') : ('준연구소 설립 이후 '+all.length+'편');
-    var frag=document.createDocumentFragment();
-    all.forEach(function(w){
-      var d=document.createElement('div'); d.className='pub';
-      var t;
-      if(w.doi){ t=document.createElement('a'); t.href='https://doi.org/'+w.doi; t.target='_blank'; t.rel='noopener'; t.style.color='inherit'; }
-      else { t=document.createElement('span'); }
-      t.className='pt'; t.textContent=w.title; d.appendChild(t);
-      var meta=document.createElement('span'); meta.className='pj';
-      var names=w.who.map(function(id){ return en?NAMES[id].en:NAMES[id].ko; }).join(' · ');
-      var when=w.year + (w.month? '. '+w.month+'.' : '');
-      meta.innerHTML=(w.journal? '<em style="font-style:italic">'+w.journal+'</em> · ' : '')
-        + when + ' · <span class="pw">'+names+'</span>';
-      d.appendChild(meta);
-      frag.appendChild(d);
-    });
-    list.innerHTML=''; list.appendChild(frag);
+
+    /* 연구위원별 편수 */
+    var got={};
+    all.forEach(function(w){ w.who.forEach(function(id){ got[id]=(got[id]||0)+1; }); });
+    var filter=null;   /* null = 전체 */
+
+    function en(){ return document.body.classList.contains('en'); }
+
+    function drawCount(n){
+      var e=en();
+      if(filter){
+        var who=e?NAMES[filter].en:NAMES[filter].ko;
+        cnt.setAttribute('data-ko',who);
+        cnt.setAttribute('data-en',who);
+        cnt.textContent=who;
+      } else {
+        cnt.setAttribute('data-ko','준연구소 설립 이후 '+n+'편');
+        cnt.setAttribute('data-en',n+' articles since August 2025');
+        cnt.textContent=e?(n+' articles since August 2025'):('준연구소 설립 이후 '+n+'편');
+      }
+    }
+
+    function drawFilter(){
+      var e=en();
+      bar.innerHTML='';
+      var opts=[null].concat(IDS.filter(function(id){ return got[id]; }));
+      opts.forEach(function(id){
+        var b=document.createElement('button');
+        b.type='button';
+        b.className='fchip'+(filter===id?' on':'');
+        b.textContent = (id===null) ? (e?'All':'전체') : (e?NAMES[id].en:NAMES[id].ko);
+        b.addEventListener('click', function(){ filter=id; draw(); });
+        bar.appendChild(b);
+      });
+      bar.style.display='flex';
+    }
+
+    function draw(){
+      var e=en();
+      var rows=filter ? all.filter(function(w){ return w.who.indexOf(filter)>=0; }) : all;
+      drawFilter(); drawCount(rows.length);
+
+      var frag=document.createDocumentFragment(), year=null, head=null, n=0;
+      function closeYear(){
+        if(head){ var t=head.querySelector('.yn');
+          t.textContent = filter ? '' : (e?(n+(n===1?' article':' articles')):(n+'편')); }
+      }
+      rows.forEach(function(w){
+        if(w.year!==year){
+          closeYear();
+          year=w.year; n=0;
+          head=document.createElement('div'); head.className='pubyear';
+          var y=document.createElement('span'); y.className='y'; y.textContent=w.year;
+          var c=document.createElement('span'); c.className='yn';
+          head.appendChild(y); head.appendChild(c);
+          frag.appendChild(head);
+        }
+        n++;
+        var d=document.createElement('div'); d.className='pub';
+        var t;
+        if(w.doi){ t=document.createElement('a'); t.href='https://doi.org/'+w.doi; t.target='_blank'; t.rel='noopener'; t.style.color='inherit'; }
+        else { t=document.createElement('span'); }
+        t.className='pt'; t.textContent=w.title; d.appendChild(t);
+        var meta=document.createElement('span'); meta.className='pj';
+        var names=w.who.map(function(id){ return e?NAMES[id].en:NAMES[id].ko; }).join(' · ');
+        var when=w.month? (w.month+'월') : '';
+        if(e) when=w.month? monthEn(w.month) : '';
+        meta.innerHTML=(w.journal? '<em style="font-style:italic">'+esc(w.journal)+'</em>' : '')
+          + (w.journal&&when? ' · ':'') + when
+          + ((w.journal||when)? ' · ':'') + '<span class="pw">'+esc(names)+'</span>';
+        d.appendChild(meta);
+        frag.appendChild(d);
+      });
+      closeYear();
+      list.innerHTML=''; list.appendChild(frag);
+    }
+
+    function esc(x){ return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function monthEn(m){
+      return ['January','February','March','April','May','June',
+              'July','August','September','October','November','December'][m-1]||'';
+    }
+
+    /* ORCID에 공개 논문이 없는 연구위원 표시 */
+    /* 점검용 — 주소 끝에 ?check 를 붙였을 때만 보임 */
+    var none=IDS.filter(function(id){ return !got[id]; });
+    if(none.length && /[?&]check\b/.test(location.search)){
+      var nm=document.getElementById('pubnote');
+      if(nm){
+        nm.setAttribute('data-ko','※ '+none.map(function(id){ return NAMES[id].ko; }).join(' · ')+' 연구위원은 ORCID에 공개 등록된 해당 기간 논문이 없어 목록에 나타나지 않습니다. 본인 ORCID에 논문을 추가하고 공개(Everyone)로 설정하면 자동으로 반영됩니다.');
+        nm.setAttribute('data-en','Note: no publicly visible ORCID records for this period were found for '+none.map(function(id){ return NAMES[id].en; }).join(', ')+'. Entries appear automatically once added to their own ORCID record with public visibility.');
+        nm.textContent = en()? nm.getAttribute('data-en') : nm.getAttribute('data-ko');
+        nm.style.display='block';
+      }
+    }
+
+    draw();
+    document.addEventListener('langchange', draw);
   });
 })();
 </script>

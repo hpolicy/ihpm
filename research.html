@@ -193,6 +193,12 @@
   }
 
   .menu a.on{color:#fff}
+  .projyear{display:flex;align-items:baseline;gap:10px;padding:26px 0 9px;
+    border-bottom:2px solid var(--ink)}
+  .projyear:first-of-type{padding-top:0}
+  .projyear .y{font-size:18px;font-weight:700;letter-spacing:-.02em}
+  .projyear .yn{font-size:12.5px;color:var(--muted)}
+  .projects .proj:first-child{border-top:0}
   .pagehead{background:var(--ink);color:#E8E6E3;padding:56px 0 58px}
   .pagehead h1{margin:0;font-size:32px;font-weight:700;letter-spacing:-.025em;color:#F2F1EF}
   .pagehead p{margin:14px 0 0;font-size:14.5px;line-height:1.85;color:#B7BCC4;max-width:640px;text-wrap:pretty}
@@ -226,7 +232,7 @@
 <div class="pagehead">
   <div class="wrap">
     <h1 class="t" data-ko="과제" data-en="Research projects">과제</h1>
-    <p class="t" data-ko="연구위원이 연구책임자(PI·PM)로 수행한 교외 연구과제 14건입니다. 연구 개시 시점이 최근인 과제부터 표시합니다." data-en="Fourteen externally funded projects led by the fellows as PI or PM, listed from the most recently started.">연구위원이 연구책임자(PI·PM)로 수행한 교외 연구과제 14건입니다. 연구 개시 시점이 최근인 과제부터 표시합니다.</p>
+    <p class="t" data-ko="연구위원이 연구책임자(PI·PM)로 수행한 교외 연구과제 14건입니다. 개시연도별로 묶어 최근 연도부터 표시합니다." data-en="Fourteen externally funded projects led by the fellows as PI or PM, grouped by start year, most recent first.">연구위원이 연구책임자(PI·PM)로 수행한 교외 연구과제 14건입니다. 개시연도별로 묶어 최근 연도부터 표시합니다.</p>
   </div>
 </div>
 
@@ -234,75 +240,90 @@
   <div class="wrap">
     <div class="shead">
       <div>
-        <div class="sub t" data-ko="준연구소 운영기간(2025.8.9.~2026.9.6.) 중 연구위원이 연구책임자로 수행한 교외 연구과제 14건" data-en="14 externally funded projects led by fellows as PI or PM during the preparatory period (9 Aug 2025 – 6 Sep 2026)">준연구소 운영기간(2025.8.9.~2026.9.6.) 중 연구위원이 연구책임자로 수행한 교외 연구과제 14건</div>
+        <div class="sub t" data-ko="준연구소 운영기간(2025.8.9.~2026.9.6.) 중 연구위원이 연구책임자로 수행한 교외 연구과제 14건 · 개시연도별" data-en="14 externally funded projects led by fellows as PI or PM during the preparatory period (9 Aug 2025 – 6 Sep 2026), by start year">준연구소 운영기간(2025.8.9.~2026.9.6.) 중 연구위원이 연구책임자로 수행한 교외 연구과제 14건 · 개시연도별</div>
       </div>
     </div>
-    <div>
-      <div class="projects">
-        <div class="proj" style="border-top:2px solid var(--ink)">
-          <div class="ptitle t" data-ko="한·미·일 지역 의료격차 다학제 실증 연구" data-en="Multidisciplinary study of regional healthcare disparities in Korea, the US and Japan">한·미·일 지역 의료격차 다학제 실증 연구</div>
-          <div class="pmeta"><span class="t" data-ko="박성철 · PI" data-en="Sungchul Park · PI">박성철 · PI</span><span class="t" data-ko="한국연구재단" data-en="National Research Foundation">한국연구재단</span><span>2026.09~2029.08</span></div>
-        </div>
-        <div class="proj">
-          <div class="ptitle t" data-ko="GLP-1 체성분 변화 한·영 공동연구" data-en="Korea–UK collaborative study on body composition change with GLP-1">GLP-1 체성분 변화 한·영 공동연구</div>
-          <div class="pmeta"><span class="t" data-ko="오하나 · PI" data-en="Hannah Oh · PI">오하나 · PI</span><span class="t" data-ko="국제공동연구(UCL)" data-en="International collaboration (UCL)">국제공동연구(UCL)</span><span>2026.08~2027.07</span></div>
-        </div>
-        <div class="proj">
-          <div class="ptitle t" data-ko="인도네시아 보건인력 관리체계 개선사업 PMC 용역" data-en="Strengthening health workforce management in Indonesia (PMC)">인도네시아 보건인력 관리체계 개선사업 PMC 용역</div>
-          <div class="pmeta"><span class="t" data-ko="최홍조 · PI" data-en="Hongjo Choi · PI">최홍조 · PI</span><span class="t" data-ko="한국국제협력단" data-en="KOICA">한국국제협력단</span><span>2026.03~2028.12</span></div>
-        </div>
-        <div class="proj">
-          <div class="ptitle t" data-ko="에피소드 기반 분석과 AI 시뮬레이션을 활용한 지역사회 노인의 의료-요양-돌봄 자원배분 구조 분석 및 예측 연구" data-en="Episode-based analysis and AI simulation of care resource allocation for community-dwelling older adults">에피소드 기반 분석과 AI 시뮬레이션을 활용한 지역사회 노인의 의료-요양-돌봄 자원배분 구조 분석 및 예측 연구</div>
-          <div class="pmeta"><span class="t" data-ko="손민성 · PI" data-en="Minsung Sohn · PI">손민성 · PI</span><span class="t" data-ko="한국연구재단" data-en="National Research Foundation">한국연구재단</span><span>2026.03~2030.02</span></div>
-        </div>
-        <div class="proj">
-          <div class="ptitle t" data-ko="의료AI 개발·도입·이용 전주기 분석과 임상·사회경제적 효과 및 위험 평가를 통한 근거 기반 확산 전략 도출 실증 연구" data-en="Whole-cycle analysis of medical AI: clinical and socioeconomic effects, risk assessment and diffusion strategy">의료AI 개발·도입·이용 전주기 분석과 임상·사회경제적 효과 및 위험 평가를 통한 근거 기반 확산 전략 도출 실증 연구</div>
-          <div class="pmeta"><span class="t" data-ko="박성철 · PI" data-en="Sungchul Park · PI">박성철 · PI</span><span class="t" data-ko="한국연구재단" data-en="National Research Foundation">한국연구재단</span><span>2026.03~2031.02</span></div>
-        </div>
-          <div class="projects">
-          <div class="proj">
-            <div class="ptitle t" data-ko="CARE-net: 인간-기술-데이터 통합 기반 노쇠고령자 돌봄 솔루션" data-en="CARE-net: integrated human–technology–data care solutions for frail older adults">CARE-net: 인간-기술-데이터 통합 기반 노쇠고령자 돌봄 솔루션</div>
-            <div class="pmeta"><span class="t" data-ko="정혜주 · Co-PI" data-en="Haejoo Chung · Co-PI">정혜주 · Co-PI</span><span class="t" data-ko="보건산업진흥원(한국형 ARPA-H)" data-en="KHIDI (Korean ARPA-H)">보건산업진흥원(한국형 ARPA-H)</span><span>2026.03~2029.02</span></div>
-          </div>
-          <div class="proj">
-            <div class="ptitle t" data-ko="초가공식품 섭취가 식후혈당과 혈당변동성에 미치는 영향" data-en="Ultra-processed food intake, postprandial glucose and glycaemic variability">초가공식품 섭취가 식후혈당과 혈당변동성에 미치는 영향</div>
-            <div class="pmeta"><span class="t" data-ko="오하나 · PI" data-en="Hannah Oh · PI">오하나 · PI</span><span class="t" data-ko="심장대사증후군학회" data-en="Korean Society of CardioMetabolic Syndrome">심장대사증후군학회</span><span>2025.07~2026.06</span></div>
-          </div>
-          <div class="proj">
-            <div class="ptitle t" data-ko="건강도시아틀라스 고도화 연구(HADES)" data-en="Healthy City Atlas development (HADES)">건강도시아틀라스 고도화 연구(HADES)</div>
-            <div class="pmeta"><span class="t" data-ko="정혜주 · PI" data-en="Haejoo Chung · PI">정혜주 · PI</span><span class="t" data-ko="한국연구재단" data-en="National Research Foundation">한국연구재단</span><span>2025.06~2028.05</span></div>
-          </div>
-          <div class="proj">
-            <div class="ptitle t" data-ko="다제내성결핵 단기치료법의 다국가 임상연구(I)" data-en="Multi-country trial of short-course treatment for MDR-TB (I)">다제내성결핵 단기치료법의 다국가 임상연구(I)</div>
-            <div class="pmeta"><span class="t" data-ko="최홍조 · PI" data-en="Hongjo Choi · PI">최홍조 · PI</span><span class="t" data-ko="국립보건연구원" data-en="Korea National Institute of Health">국립보건연구원</span><span>2025.05~2027.12</span></div>
-          </div>
-          <div class="proj">
-            <div class="ptitle t" data-ko="결핵 빅데이터를 활용한 long-term TB 평가 연구" data-en="Long-term tuberculosis outcomes using TB big data">결핵 빅데이터를 활용한 long-term TB 평가 연구</div>
-            <div class="pmeta"><span class="t" data-ko="최홍조 · PI" data-en="Hongjo Choi · PI">최홍조 · PI</span><span class="t" data-ko="국립보건연구원" data-en="Korea National Institute of Health">국립보건연구원</span><span>2025.05~2026.12</span></div>
-          </div>
-          <div class="proj">
-            <div class="ptitle t" data-ko="국내 일반인구의 잠복결핵감염률 모니터링 추정모델 개발" data-en="Estimation model for monitoring latent TB infection in the general population">국내 일반인구의 잠복결핵감염률 모니터링 추정모델 개발</div>
-            <div class="pmeta"><span class="t" data-ko="최홍조 · PI" data-en="Hongjo Choi · PI">최홍조 · PI</span><span class="t" data-ko="질병관리청" data-en="Korea Disease Control and Prevention Agency">질병관리청</span><span>2025.04~2026.04</span></div>
-          </div>
-          <div class="proj">
-            <div class="ptitle t" data-ko="난임 부부의 초가공식품 섭취 및 조절가능 임신 기여요인 규명" data-en="Ultra-processed food intake and modifiable fertility factors among couples with infertility">난임 부부의 초가공식품 섭취 및 조절가능 임신 기여요인 규명</div>
-            <div class="pmeta"><span class="t" data-ko="오하나 · PI" data-en="Hannah Oh · PI">오하나 · PI</span><span class="t" data-ko="한국연구재단" data-en="National Research Foundation">한국연구재단</span><span>2025.03~2028.02</span></div>
-          </div>
-          <div class="proj">
-            <div class="ptitle t" data-ko="고령자의 연속적인 통합돌봄을 위한 AI 로봇 기반 디지털 돌봄 플랫폼" data-en="AI robot-based digital care platform for continuous integrated care of older adults">고령자의 연속적인 통합돌봄을 위한 AI 로봇 기반 디지털 돌봄 플랫폼</div>
-            <div class="pmeta"><span class="t" data-ko="정혜주 · Co-PI" data-en="Haejoo Chung · Co-PI">정혜주 · Co-PI</span><span class="t" data-ko="보건산업진흥원(한국형 ARPA-H)" data-en="KHIDI (Korean ARPA-H)">보건산업진흥원(한국형 ARPA-H)</span><span>2024.11~2025.12</span></div>
-          </div>
-          <div class="proj" style="border-bottom:1px solid var(--rule)">
-            <div class="ptitle t" data-ko="결핵 정밀 의학을 위한 인구집단 역학의 기여" data-en="Population epidemiology for tuberculosis precision medicine">결핵 정밀 의학을 위한 인구집단 역학의 기여</div>
-            <div class="pmeta"><span class="t" data-ko="최홍조 · PI" data-en="Hongjo Choi · PI">최홍조 · PI</span><span class="t" data-ko="한국연구재단" data-en="National Research Foundation">한국연구재단</span><span>2023.06~2026.02</span></div>
-          </div>
-          </div>
+    <div class="projyear">
+      <span class="y">2026</span>
+      <span class="yn t" data-ko="6건" data-en="6 projects">6건</span>
+    </div>
+    <div class="projects">
+      <div class="proj">
+        <div class="ptitle t" data-ko="한·미·일 지역 의료격차 다학제 실증 연구" data-en="Multidisciplinary study of regional healthcare disparities in Korea, the US and Japan">한·미·일 지역 의료격차 다학제 실증 연구</div>
+        <div class="pmeta"><span class="t" data-ko="박성철 · PI" data-en="Sungchul Park · PI">박성철 · PI</span><span class="t" data-ko="한국연구재단" data-en="National Research Foundation">한국연구재단</span><span>2026.09~2029.08</span></div>
       </div>
+      <div class="proj">
+        <div class="ptitle t" data-ko="GLP-1 체성분 변화 한·영 공동연구" data-en="Korea–UK collaborative study on body composition change with GLP-1">GLP-1 체성분 변화 한·영 공동연구</div>
+        <div class="pmeta"><span class="t" data-ko="오하나 · PI" data-en="Hannah Oh · PI">오하나 · PI</span><span class="t" data-ko="국제공동연구(UCL)" data-en="International collaboration (UCL)">국제공동연구(UCL)</span><span>2026.08~2027.07</span></div>
       </div>
-        <p class="note t" data-ko="※ 연구위원이 연구책임자(PI·PM)로 수행한 교외 연구과제 기준. 공동연구원 참여 과제와 교내 지원 과제는 제외." data-en="Externally funded projects led by a fellow as PI or PM; projects with co-investigator participation and internally funded projects are excluded.">※ 연구위원이 연구책임자(PI·PM)로 수행한 교외 연구과제 기준. 공동연구원 참여 과제와 교내 지원 과제는 제외.</p>
+      <div class="proj">
+        <div class="ptitle t" data-ko="인도네시아 보건인력 관리체계 개선사업 PMC 용역" data-en="Strengthening health workforce management in Indonesia (PMC)">인도네시아 보건인력 관리체계 개선사업 PMC 용역</div>
+        <div class="pmeta"><span class="t" data-ko="최홍조 · PI" data-en="Hongjo Choi · PI">최홍조 · PI</span><span class="t" data-ko="한국국제협력단" data-en="KOICA">한국국제협력단</span><span>2026.03~2028.12</span></div>
       </div>
+      <div class="proj">
+        <div class="ptitle t" data-ko="CARE-net: 인간-기술-데이터 통합 기반 노쇠고령자 돌봄 솔루션" data-en="CARE-net: integrated human–technology–data care solutions for frail older adults">CARE-net: 인간-기술-데이터 통합 기반 노쇠고령자 돌봄 솔루션</div>
+        <div class="pmeta"><span class="t" data-ko="정혜주 · Co-PI" data-en="Haejoo Chung · Co-PI">정혜주 · Co-PI</span><span class="t" data-ko="보건산업진흥원(한국형 ARPA-H)" data-en="KHIDI (Korean ARPA-H)">보건산업진흥원(한국형 ARPA-H)</span><span>2026.03~2029.02</span></div>
+      </div>
+      <div class="proj">
+        <div class="ptitle t" data-ko="에피소드 기반 분석과 AI 시뮬레이션을 활용한 지역사회 노인의 의료-요양-돌봄 자원배분 구조 분석 및 예측 연구" data-en="Episode-based analysis and AI simulation of care resource allocation for community-dwelling older adults">에피소드 기반 분석과 AI 시뮬레이션을 활용한 지역사회 노인의 의료-요양-돌봄 자원배분 구조 분석 및 예측 연구</div>
+        <div class="pmeta"><span class="t" data-ko="손민성 · PI" data-en="Minsung Sohn · PI">손민성 · PI</span><span class="t" data-ko="한국연구재단" data-en="National Research Foundation">한국연구재단</span><span>2026.03~2030.02</span></div>
+      </div>
+      <div class="proj">
+        <div class="ptitle t" data-ko="의료AI 개발·도입·이용 전주기 분석과 임상·사회경제적 효과 및 위험 평가를 통한 근거 기반 확산 전략 도출 실증 연구" data-en="Whole-cycle analysis of medical AI: clinical and socioeconomic effects, risk assessment and diffusion strategy">의료AI 개발·도입·이용 전주기 분석과 임상·사회경제적 효과 및 위험 평가를 통한 근거 기반 확산 전략 도출 실증 연구</div>
+        <div class="pmeta"><span class="t" data-ko="박성철 · PI" data-en="Sungchul Park · PI">박성철 · PI</span><span class="t" data-ko="한국연구재단" data-en="National Research Foundation">한국연구재단</span><span>2026.03~2031.02</span></div>
       </div>
     </div>
+    <div class="projyear">
+      <span class="y">2025</span>
+      <span class="yn t" data-ko="6건" data-en="6 projects">6건</span>
+    </div>
+    <div class="projects">
+      <div class="proj">
+        <div class="ptitle t" data-ko="초가공식품 섭취가 식후혈당과 혈당변동성에 미치는 영향" data-en="Ultra-processed food intake, postprandial glucose and glycaemic variability">초가공식품 섭취가 식후혈당과 혈당변동성에 미치는 영향</div>
+        <div class="pmeta"><span class="t" data-ko="오하나 · PI" data-en="Hannah Oh · PI">오하나 · PI</span><span class="t" data-ko="심장대사증후군학회" data-en="Korean Society of CardioMetabolic Syndrome">심장대사증후군학회</span><span>2025.07~2026.06</span></div>
+      </div>
+      <div class="proj">
+        <div class="ptitle t" data-ko="건강도시아틀라스 고도화 연구(HADES)" data-en="Healthy City Atlas development (HADES)">건강도시아틀라스 고도화 연구(HADES)</div>
+        <div class="pmeta"><span class="t" data-ko="정혜주 · PI" data-en="Haejoo Chung · PI">정혜주 · PI</span><span class="t" data-ko="한국연구재단" data-en="National Research Foundation">한국연구재단</span><span>2025.06~2028.05</span></div>
+      </div>
+      <div class="proj">
+        <div class="ptitle t" data-ko="결핵 빅데이터를 활용한 long-term TB 평가 연구" data-en="Long-term tuberculosis outcomes using TB big data">결핵 빅데이터를 활용한 long-term TB 평가 연구</div>
+        <div class="pmeta"><span class="t" data-ko="최홍조 · PI" data-en="Hongjo Choi · PI">최홍조 · PI</span><span class="t" data-ko="국립보건연구원" data-en="Korea National Institute of Health">국립보건연구원</span><span>2025.05~2026.12</span></div>
+      </div>
+      <div class="proj">
+        <div class="ptitle t" data-ko="다제내성결핵 단기치료법의 다국가 임상연구(I)" data-en="Multi-country trial of short-course treatment for MDR-TB (I)">다제내성결핵 단기치료법의 다국가 임상연구(I)</div>
+        <div class="pmeta"><span class="t" data-ko="최홍조 · PI" data-en="Hongjo Choi · PI">최홍조 · PI</span><span class="t" data-ko="국립보건연구원" data-en="Korea National Institute of Health">국립보건연구원</span><span>2025.05~2027.12</span></div>
+      </div>
+      <div class="proj">
+        <div class="ptitle t" data-ko="국내 일반인구의 잠복결핵감염률 모니터링 추정모델 개발" data-en="Estimation model for monitoring latent TB infection in the general population">국내 일반인구의 잠복결핵감염률 모니터링 추정모델 개발</div>
+        <div class="pmeta"><span class="t" data-ko="최홍조 · PI" data-en="Hongjo Choi · PI">최홍조 · PI</span><span class="t" data-ko="질병관리청" data-en="Korea Disease Control and Prevention Agency">질병관리청</span><span>2025.04~2026.04</span></div>
+      </div>
+      <div class="proj">
+        <div class="ptitle t" data-ko="난임 부부의 초가공식품 섭취 및 조절가능 임신 기여요인 규명" data-en="Ultra-processed food intake and modifiable fertility factors among couples with infertility">난임 부부의 초가공식품 섭취 및 조절가능 임신 기여요인 규명</div>
+        <div class="pmeta"><span class="t" data-ko="오하나 · PI" data-en="Hannah Oh · PI">오하나 · PI</span><span class="t" data-ko="한국연구재단" data-en="National Research Foundation">한국연구재단</span><span>2025.03~2028.02</span></div>
+      </div>
+    </div>
+    <div class="projyear">
+      <span class="y">2024</span>
+      <span class="yn t" data-ko="1건" data-en="1 project">1건</span>
+    </div>
+    <div class="projects">
+      <div class="proj">
+        <div class="ptitle t" data-ko="고령자의 연속적인 통합돌봄을 위한 AI 로봇 기반 디지털 돌봄 플랫폼" data-en="AI robot-based digital care platform for continuous integrated care of older adults">고령자의 연속적인 통합돌봄을 위한 AI 로봇 기반 디지털 돌봄 플랫폼</div>
+        <div class="pmeta"><span class="t" data-ko="정혜주 · Co-PI" data-en="Haejoo Chung · Co-PI">정혜주 · Co-PI</span><span class="t" data-ko="보건산업진흥원(한국형 ARPA-H)" data-en="KHIDI (Korean ARPA-H)">보건산업진흥원(한국형 ARPA-H)</span><span>2024.11~2025.12</span></div>
+      </div>
+    </div>
+    <div class="projyear">
+      <span class="y">2023</span>
+      <span class="yn t" data-ko="1건" data-en="1 project">1건</span>
+    </div>
+    <div class="projects">
+      <div class="proj">
+        <div class="ptitle t" data-ko="결핵 정밀 의학을 위한 인구집단 역학의 기여" data-en="Population epidemiology for tuberculosis precision medicine">결핵 정밀 의학을 위한 인구집단 역학의 기여</div>
+        <div class="pmeta"><span class="t" data-ko="최홍조 · PI" data-en="Hongjo Choi · PI">최홍조 · PI</span><span class="t" data-ko="한국연구재단" data-en="National Research Foundation">한국연구재단</span><span>2023.06~2026.02</span></div>
+      </div>
+    </div>
+    <p class="note t" data-ko="※ 연구위원이 연구책임자(PI·PM)로 수행한 교외 연구과제 기준. 공동연구원 참여 과제와 교내 지원 과제는 제외." data-en="Externally funded projects led by a fellow as PI or PM; projects with co-investigator participation and internally funded projects are excluded.">※ 연구위원이 연구책임자(PI·PM)로 수행한 교외 연구과제 기준. 공동연구원 참여 과제와 교내 지원 과제는 제외.</p>
   </div>
 </section>
 

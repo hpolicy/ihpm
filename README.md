@@ -12,7 +12,6 @@
 | `publications.html` | 논문 — 연구위원 ORCID에서 자동 수집 |
 | `service.html` | 대외활동 — 학술지 편집진·학술단체 임원·정부 위원회 |
 | `favicon.ico` · `favicon-32.png` · `apple-touch-icon.png` | 브라우저 탭·북마크·모바일 홈화면 아이콘 |
-| `CNAME` | 커스텀 도메인 `ihpm.korea.ac.kr` (DNS 등록 완료 후 효력) |
 | `.nojekyll` | GitHub Pages의 Jekyll 처리를 끔 |
 
 세 파일은 각각 완결된 HTML이며, 공통 스타일과 국·영문 전환 스크립트가 파일마다 들어 있음. 한 파일의 디자인을 바꾸면 나머지 두 파일도 같이 고쳐야 함.
@@ -29,7 +28,7 @@
 1. 정보전산처에 `ihpm.korea.ac.kr`의 CNAME 레코드를 `hpolicy.github.io` 로 등록 요청 (신청 완료).
 2. DNS 반영 확인 후 `Settings → Pages → Custom domain`에 `ihpm.korea.ac.kr` 입력.
 3. 인증서 발급이 끝나면 **Enforce HTTPS** 체크.
-4. `CNAME` 파일은 저장소에 이미 포함되어 있음. Pages 설정에서 도메인을 입력하면 GitHub이 같은 내용으로 유지함.
+4. 도메인을 입력하면 GitHub이 저장소에 `CNAME` 파일을 자동으로 만듦. 지금은 `hpolicy.korea.ac.kr/ihpm/` 로 서비스 중이므로 `CNAME` 파일을 두면 안 됨 — 전용 주소가 나온 뒤에 설정할 것.
 
 ※ DNS가 아직 안 잡힌 상태에서 Custom domain을 입력하면 "domain does not resolve" 경고가 뜸. 등록이 반영될 때까지(보통 수십 분~하루) 기다렸다 다시 시도하면 됨.
 
@@ -53,3 +52,6 @@
 - 영문 성명은 설립신청서 연구업적서의 표기를 이름-성 순으로 통일함. 오하나 교수는 본인 확인을 거쳐 Hannah Oh로 표기함.
 - 논문 목록은 연구위원 11인의 ORCID(pub.orcid.org)에서 페이지 열람 시 자동 수집함. 준연구소 설립(2025년 8월) 이후 학술지 논문만 표시하며, 공저 논문은 1편으로 계산함.
 - 누락 논문이 있으면 해당 연구위원이 본인 ORCID에 등록하면 자동 반영됨. 홈페이지 파일은 고칠 필요 없음.
+- 논문 목록은 연도별로 묶이며, 연구위원 이름을 누르면 그 사람 논문만 보임. 편수는 연구소 전체와 연도별로만 표시하고 개인별로는 표시하지 않음.
+- **누가 빠졌는지 점검** — 주소 끝에 `?check`를 붙여 열면(`publications.html?check`) 해당 기간 논문이 한 편도 잡히지 않은 연구위원 이름이 아래에 표시됨. 일반 방문자에게는 보이지 않음. 이름이 뜨면 그 연구위원의 ORCID에 논문이 없거나 공개 범위가 Everyone이 아닌 경우임.
+- 기간을 「최근 3년」으로 바꾸려면 `publications.html`의 `var SINCE_Y=2025, SINCE_M=8;` 한 줄만 고치면 됨. 3년차 평가까지는 설립 이후 누적으로 두는 편이 평가 자료와 숫자가 맞음.
