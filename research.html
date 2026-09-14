@@ -377,7 +377,8 @@
   var NAMES={'정혜주':'Haejoo Chung','최만규':'Mankyu Choi','김혜영':'Hae-Young Kim',
     '오하나':'Hannah Oh','김진호':'Jinho Kim','김록리':'Rockli Kim','박성철':'Sungchul Park',
     '최홍조':'Hongjo Choi','손민성':'Minsung Sohn','이환희':'Whanhee Lee','박금령':'Gum-Ryeong Park'};
-  var ORDER=['정혜주','최만규','김혜영','오하나','김진호','김록리','박성철','최홍조','손민성','이환희','박금령'];
+  /* 국문은 가나다순, 영문은 성(姓) ABC순 */
+  function enkey(nm){ var a=String(NAMES[nm]||nm).split(' '); return (a.pop()+' '+a.join(' ')).toLowerCase(); }
   var rows=[].slice.call(document.querySelectorAll('.proj[data-end]'));
   if(!rows.length) return;
 
@@ -396,7 +397,7 @@
   function drawFilter(){
     var e=en(), seen={}, names=[];
     rows.forEach(function(r){ if(!seen[r._who]){ seen[r._who]=1; names.push(r._who); } });
-    names.sort(function(a,b){ return ORDER.indexOf(a)-ORDER.indexOf(b); });
+    names.sort(function(a,b){ return e ? enkey(a).localeCompare(enkey(b)) : a.localeCompare(b,'ko'); });
     bar.innerHTML='';
     [null].concat(names).forEach(function(nm){
       var b=document.createElement('button');

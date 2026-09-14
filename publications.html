@@ -402,10 +402,16 @@
       }
     }
 
+    /* 국문은 가나다순, 영문은 성(姓) ABC순 */
+    function enkey(s){ var a=String(s).split(' '); return (a.pop()+' '+a.join(' ')).toLowerCase(); }
+
     function drawFilter(){
       var e=en();
       bar.innerHTML='';
-      var opts=[null].concat(IDS.filter(function(id){ return got[id]; }));
+      var ids=IDS.filter(function(id){ return got[id]; }).sort(function(a,b){
+        return e ? enkey(NAMES[a].en).localeCompare(enkey(NAMES[b].en))
+                 : NAMES[a].ko.localeCompare(NAMES[b].ko,'ko'); });
+      var opts=[null].concat(ids);
       opts.forEach(function(id){
         var b=document.createElement('button');
         b.type='button';
