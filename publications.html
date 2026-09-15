@@ -619,11 +619,8 @@
           var when=w.month? (w.month+'월') : '';
           if(e) when=w.month? monthEn(w.month) : '';
           var bits=[];
-          if(w.journal){
-            /* 저서 장은 수록서를 「In:」으로 밝힌다. 학술지 논문은 지금처럼 誌名만 */
-            var lead=(w.sub==='book-chapter') ? (e?'In: ':'수록: ') : '';
-            bits.push(lead+'<em style="font-style:italic">'+esc(w.journal)+'</em>');
-          }
+          /* 학술지명·수록서명 — 어느 쪽이든 서명만 기울여 적는다 */
+          if(w.journal) bits.push('<em style="font-style:italic">'+esc(w.journal)+'</em>');
           if(w.publisher) bits.push(esc(w.publisher));
           if(when) bits.push(when);
           bits.push('<span class="pw">'+esc(names)+'</span>');
