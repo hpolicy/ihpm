@@ -211,15 +211,35 @@
 
   .actgroup+.actgroup{margin-top:40px}
   .actheading{font-size:15px;font-weight:700;padding-bottom:12px;border-bottom:2px solid var(--ink)}
-  .actlist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 34px}
-  .act{display:flex;gap:12px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--rule);
-    font-size:13.5px;line-height:1.6}
+  /* 한 단으로 두고, 기관명과 직책을 한 줄에 나란히 놓는다.
+     폭을 묶어 직책과 기간 사이가 지나치게 벌어지지 않게 한다 */
+  .actgroup{max-width:880px}
+  .actsub{margin:26px 0 0;padding-bottom:8px;font-size:11.5px;letter-spacing:.14em;
+    font-weight:500;border-bottom:1px solid var(--rule)}
+  .actsub.now{color:var(--crimson)}
+  .actsub.past{color:var(--muted)}
+  .actlist>.actsub:first-child{margin-top:14px}
+  .actsub span{letter-spacing:0;font-weight:400;margin-left:8px;color:var(--muted)}
+  .actlist{display:grid;grid-template-columns:1fr}
+  .act{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;
+    padding:11px 0;border-bottom:1px solid var(--rule);font-size:13.5px;line-height:1.6}
   .act .who{flex:0 0 84px;font-weight:500}
-  .act .what{flex:1 1 auto;display:flex;flex-direction:column;gap:2px}
+  .act .what{flex:0 1 auto;display:flex;flex-direction:row;align-items:baseline;
+    gap:10px;flex-wrap:wrap}
   .act .what .org{color:var(--ink-2)}
-  .act .what .role{color:var(--crimson-d);font-size:13px}
+  .act .what .role{color:var(--crimson-d);font-size:13px;white-space:nowrap}
+  .act .what .role::before{content:"·";margin-right:10px;color:#C9C6C0}
+  /* 기간도 오른쪽 끝으로 보내지 않고 직책 뒤에 이어 붙인다 */
   .act .per{flex:0 0 auto;color:var(--muted);font-size:12.5px;white-space:nowrap}
-  @media (max-width:900px){ .actlist{grid-template-columns:1fr} }
+  .act .per::before{content:"·";margin-right:10px;color:#C9C6C0}
+  @media (max-width:560px){
+    /* 좁은 화면에서는 직책을 아랫줄로 내린다 — 가운뎃점이 줄 앞에 홀로 남지 않도록 */
+    .act .who{flex:0 0 100%}
+    .act .what{flex-direction:column;gap:2px}
+    .act .what .role::before{content:none}
+    .act .per::before{content:none}
+    .act .per{margin-left:0;padding-left:0}
+  }
 </style>
 </head>
 <body>
@@ -240,7 +260,7 @@
         <a href="index.html#about" class="t" data-ko="연구소 소개" data-en="About">연구소 소개</a>
         <a href="people.html" class="t" data-ko="구성원" data-en="People">구성원</a>
         <a href="research.html" class="t" data-ko="과제" data-en="Projects">과제</a>
-        <a href="publications.html" class="t" data-ko="논문" data-en="Publications">논문</a>
+        <a href="publications.html" class="t" data-ko="연구업적" data-en="Research output">연구업적</a>
         <a href="service.html" class="t on" data-ko="대외활동" data-en="Service">대외활동</a>
         <a href="https://hpolitics.org" class="j t" target="_blank" rel="noopener" data-ko="Health Politics ↗" data-en="Health Politics ↗">Health Politics ↗</a>
     </nav>
@@ -250,7 +270,7 @@
 <div class="pagehead">
   <div class="wrap">
     <h1 class="t" data-ko="대외활동" data-en="Service">대외활동</h1>
-    <p class="t" data-ko="연구위원이 맡고 있거나 최근 맡은 학술지 편집진·학술단체 임원·정부 및 공공기관 위원회입니다. (2026년 9월 기준)" data-en="Editorial, learned-society and public advisory appointments held by the fellows, as of September 2026.">연구위원이 맡고 있거나 최근 맡은 학술지 편집진·학술단체 임원·정부 및 공공기관 위원회입니다. (2026년 9월 기준)</p>
+    <p class="t" data-ko="연구위원의 학술지 편집진·학술단체 임원·정부 및 공공기관 위원회 참여입니다. 재임 중인 직책을 먼저 싣고, 끝난 직책은 「역임」으로 최근 5개 연도까지 보여 줍니다." data-en="Editorial, learned-society and public advisory appointments held by the fellows. Current posts are listed first; completed posts appear under “Past” for the most recent five years.">연구위원의 학술지 편집진·학술단체 임원·정부 및 공공기관 위원회 참여입니다. 재임 중인 직책을 먼저 싣고, 끝난 직책은 「역임」으로 최근 5개 연도까지 보여 줍니다.</p>
   </div>
 </div>
 
@@ -268,6 +288,11 @@
             <div class="who t" data-ko="최홍조" data-en="Hongjo Choi">최홍조</div>
             <div class="what"><span class="org">BMC Public Health</span><span class="role t" data-ko="Assistant Editor" data-en="Assistant Editor">Assistant Editor</span></div>
             <div class="per">2026.3~</div>
+          </div>
+          <div class="act">
+            <div class="who t" data-ko="정혜주" data-en="Haejoo Chung">정혜주</div>
+            <div class="what"><span class="org">International Journal of Social Determinants of Health and Health Services</span><span class="role t" data-ko="Editorial Consultant" data-en="Editorial Consultant">Editorial Consultant</span></div>
+            <div class="per">2023.1~</div>
           </div>
           <div class="act">
             <div class="who t" data-ko="최홍조" data-en="Hongjo Choi">최홍조</div>
@@ -510,6 +535,7 @@
     }
     btn.textContent = lang === 'en' ? '국문' : 'ENGLISH';
     document.documentElement.lang = lang === 'en' ? 'en' : 'ko';
+    try { document.dispatchEvent(new CustomEvent('langchange')); } catch (e) {}
     try { localStorage.setItem('ihpm-lang', lang); } catch (e) {}
   }
   var saved = 'ko';
@@ -519,6 +545,83 @@
   btn.addEventListener('click', function(){
     apply(document.body.classList.contains('en') ? 'ko' : 'en');
   });
+})();
+</script>
+<script>
+/* 대외활동 — 기간 표기에서 재임/역임을 자동 판정해 나눈다
+   · 재임: 종료 표기가 없거나 아직 지나지 않은 것 — 시작 연도와 무관하게 모두 표시
+   · 역임: 이미 끝난 것 — 최근 5개 연도까지만 표시
+   기간 표기는 「2026.3~」 「2024.7~2026.6」 「2023~2027」 형태를 모두 받는다 */
+(function(){
+  var groups=[].slice.call(document.querySelectorAll('.actgroup'));
+  if(!groups.length) return;
+
+  var NOW=new Date();
+  var FY=(NOW.getMonth()+1>=3)?NOW.getFullYear():NOW.getFullYear()-1;
+  var SINCE_Y=FY-4;
+  var CUT=NOW.getFullYear()*12+(NOW.getMonth()+1);
+
+  /* 「2024.7」 → 월 단위 숫자. 월이 없으면 끝 판정에 유리하게 12월로 본다 */
+  function num(part, endish){
+    var m=String(part).match(/(\d{4})(?:\s*[.\-]\s*(\d{1,2}))?/);
+    if(!m) return null;
+    var y=parseInt(m[1],10), mo=m[2]?parseInt(m[2],10):(endish?12:1);
+    return {y:y, v:y*12+mo};
+  }
+  function parse(txt){
+    var t=String(txt).replace(/\s/g,'');
+    var i=t.indexOf('~'); if(i<0) i=t.indexOf('-');
+    var a=(i<0)?t:t.slice(0,i), b=(i<0)?'':t.slice(i+1);
+    return {start:num(a,false), end:b?num(b,true):null};
+  }
+
+  var state=[];
+  groups.forEach(function(g){
+    var list=g.querySelector('.actlist'); if(!list) return;
+    var rows=[].slice.call(list.querySelectorAll('.act'));
+    var now=[], past=[];
+    rows.forEach(function(r){
+      var pe=r.querySelector('.per');
+      var p=parse(pe?pe.textContent:'');
+      r._start=p.start?p.start.v:0;
+      if(!p.end || p.end.v>=CUT){ now.push(r); }
+      else if(p.end.y>=SINCE_Y){ r._end=p.end.v; past.push(r); }
+      /* 5개 연도보다 오래 끝난 것은 어디에도 넣지 않는다 */
+    });
+    now.sort(function(a,b){ return b._start-a._start; });
+    past.sort(function(a,b){ return b._end-a._end; });
+    state.push({list:list, now:now, past:past});
+  });
+
+  function en(){ return document.body.classList.contains('en'); }
+
+  function head(cls, label, n){
+    var d=document.createElement('div');
+    d.className='actsub '+cls;
+    d.appendChild(document.createTextNode(label));
+    var c=document.createElement('span');
+    c.textContent = en() ? (n+(n===1?' post':' posts')) : (n+'건');
+    d.appendChild(c);
+    return d;
+  }
+
+  function draw(){
+    var e=en();
+    state.forEach(function(g){
+      g.list.innerHTML='';
+      if(g.now.length){
+        g.list.appendChild(head('now', e?'CURRENT':'재임', g.now.length));
+        g.now.forEach(function(r){ g.list.appendChild(r); });
+      }
+      if(g.past.length){
+        g.list.appendChild(head('past', e?'PAST':'역임', g.past.length));
+        g.past.forEach(function(r){ g.list.appendChild(r); });
+      }
+    });
+  }
+
+  draw();
+  document.addEventListener('langchange', draw);
 })();
 </script>
 </body>

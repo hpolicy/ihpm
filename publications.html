@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>논문 · 보건정책관리연구소(준)</title>
+<title>연구업적 · 보건정책관리연구소(준)</title>
 <meta name="description" content="고려대학교 보건정책관리연구소(준) — 데이터로 정책과 관리의 근거를 만듭니다">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
@@ -197,7 +197,14 @@
   .pagehead h1{margin:0;font-size:32px;font-weight:700;letter-spacing:-.025em;color:#F2F1EF}
   .pagehead p{margin:14px 0 0;font-size:14.5px;line-height:1.85;color:#B7BCC4;max-width:640px;text-wrap:pretty}
 
-  .pubfilter{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 26px}
+  .pubfilter{display:flex;flex-direction:column;align-items:flex-start;gap:9px;margin:0 0 26px}
+  .pubfilter .frow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .pubfilter .flbl{font-size:11px;letter-spacing:.1em;color:var(--muted);
+    margin-right:6px;min-width:52px}
+  .pubkind{margin:48px 0 2px;font-size:11.5px;letter-spacing:.14em;color:var(--crimson);
+    font-weight:500}
+  #publist .pubkind:first-child{margin-top:0}
+  .pubempty{padding:22px 0;font-size:13.5px;color:var(--muted)}
   .fchip{padding:6px 12px;border:1px solid #D8D4CD;background:#fff;font:inherit;font-size:13px;
     color:var(--ink);cursor:pointer;line-height:1.5}
   .fchip:hover{border-color:var(--crimson);color:var(--crimson)}
@@ -239,7 +246,7 @@
         <a href="index.html#about" class="t" data-ko="연구소 소개" data-en="About">연구소 소개</a>
         <a href="people.html" class="t" data-ko="구성원" data-en="People">구성원</a>
         <a href="research.html" class="t" data-ko="과제" data-en="Projects">과제</a>
-        <a href="publications.html" class="t on" data-ko="논문" data-en="Publications">논문</a>
+        <a href="publications.html" class="t on" data-ko="연구업적" data-en="Research output">연구업적</a>
         <a href="service.html" class="t" data-ko="대외활동" data-en="Service">대외활동</a>
         <a href="https://hpolitics.org" class="j t" target="_blank" rel="noopener" data-ko="Health Politics ↗" data-en="Health Politics ↗">Health Politics ↗</a>
     </nav>
@@ -248,8 +255,8 @@
 
 <div class="pagehead">
   <div class="wrap">
-    <h1 class="t" data-ko="논문" data-en="Publications">논문</h1>
-    <p class="t" data-ko="연구위원의 ORCID 기록에서 자동으로 가져옵니다. 준연구소 설립(2025년 8월) 이후 발표된 학술지 논문을 발간일 역순으로 표시합니다." data-en="Drawn automatically from the fellows&#39; ORCID records: journal articles published since the institute began operating in August 2025, listed in reverse chronological order.">연구위원의 ORCID 기록에서 자동으로 가져옵니다. 준연구소 설립(2025년 8월) 이후 발표된 학술지 논문을 발간일 역순으로 표시합니다.</p>
+    <h1 class="t" data-ko="연구업적" data-en="Research output">연구업적</h1>
+    <p class="t" data-ko="연구위원의 ORCID 기록에서 자동으로 가져옵니다. 최근 5개 연도의 학술지 논문·저서·특허를 유형별로 정리하며, 목록은 연도별로 나누어 보여 줍니다." data-en="Drawn automatically from the fellows&#39; ORCID records: journal articles, books and patents from the past five years, grouped by type and browsable year by year.">연구위원의 ORCID 기록에서 자동으로 가져옵니다. 최근 5개 연도의 학술지 논문·저서·특허를 유형별로 정리하며, 목록은 연도별로 나누어 보여 줍니다.</p>
   </div>
 </div>
 
@@ -263,7 +270,7 @@
     <div class="pubfilter" id="pubfilter" style="display:none"></div>
     <div id="publist"></div>
     <p class="note t" id="pubnote" style="display:none"></p>
-    <p class="note t" data-ko="※ 공동 저술 논문은 한 편으로 계산합니다. 목록은 각 연구위원이 ORCID에 등록한 기록을 따르므로, 누락된 논문은 해당 연구위원이 ORCID에 추가하면 자동으로 반영됩니다." data-en="Co-authored papers are counted once. The list follows each fellow&#39;s own ORCID record; missing items appear automatically once added there.">※ 공동 저술 논문은 한 편으로 계산합니다. 목록은 각 연구위원이 ORCID에 등록한 기록을 따르므로, 누락된 논문은 해당 연구위원이 ORCID에 추가하면 자동으로 반영됩니다.</p>
+    <p class="note t" data-ko="※ 공동 저술은 한 건으로 계산하며, 프리프린트는 포함하지 않습니다. 목록은 각 연구위원이 ORCID에 등록한 기록을 따르므로, 누락된 논문·저서는 해당 연구위원이 ORCID에 추가하면 자동으로 반영됩니다." data-en="Co-authored works are counted once; preprints are excluded. The list follows each fellow&#39;s own ORCID record, so missing items appear automatically once added there.">※ 공동 저술은 한 건으로 계산하며, 프리프린트는 포함하지 않습니다. 목록은 각 연구위원이 ORCID에 등록한 기록을 따르므로, 누락된 논문·저서는 해당 연구위원이 ORCID에 추가하면 자동으로 반영됩니다.</p>
   </div>
 </section>
 
@@ -312,25 +319,54 @@
 
 
 <script>
-/* 논문 목록 — 연구위원 ORCID 기록에서 수집 */
+/* 연구업적 목록 — 연구위원 ORCID 기록에서 수집
+   · 표시 범위: 최근 5개 연도 (발간연도 기준)
+   · 상단 요약은 5년 전체, 목록은 연도 칩으로 한 해씩 — 기본값은 올해
+   · 유형: 학술지 논문 / 저서·저서 장 / 특허 — 0건인 유형은 구획이 나타나지 않음
+   · 프리프린트는 제외 (게재 논문과 함께 세면 실적이 부풀려지므로) */
 (function(){
   var list=document.getElementById('publist'), cnt=document.getElementById('pubcount'),
       bar=document.getElementById('pubfilter');
   if(!list||!window.fetch) return;
-  var SINCE_Y=2025, SINCE_M=8;
+
+  /* 기준 연도는 고정하지 않고 매번 계산한다. 회계연도(3월 시작)를 기준으로 현 연도를
+     정하되, 목록의 연도 구분 자체는 발간연도(역년)를 따른다 */
+  var NOW=new Date();
+  var FY=(NOW.getMonth()+1>=3)?NOW.getFullYear():NOW.getFullYear()-1;
+  var SINCE_Y=FY-4;                       /* 최근 5개 연도 */
+
+  var KINDS=[
+    {k:'article', ko:'학술지 논문', en:'JOURNAL ARTICLES', u_ko:'편', u_en:'articles', u_en1:'article'},
+    {k:'book',    ko:'저서 · 저서 장', s_ko:'저서', en:'BOOKS AND CHAPTERS', u_ko:'권', u_en:'books', u_en1:'book'},
+    {k:'patent',  ko:'특허', en:'PATENTS', u_ko:'건', u_en:'patents', u_en1:'patent'}
+  ];
+  /* 목록에 없는 유형(프리프린트·학술대회 발표·기타)은 표시하지 않는다 */
+  function kindOf(t){
+    t=String(t||'').toLowerCase();
+    if(t.indexOf('journal-article')>=0) return 'article';
+    if(t==='book'||t==='book-chapter'||t==='edited-book') return 'book';
+    if(t==='patent') return 'patent';
+    return null;
+  }
+  var RANK={article:3, book:2, patent:1};
+
   var IDS=['0000-0002-2661-4161','0000-0002-8576-8195','0000-0003-2043-2575','0000-0002-8368-3032','0000-0002-4675-4612','0000-0002-9864-3957','0000-0002-7546-9685','0000-0001-8853-7061','0000-0001-7748-5622','0000-0001-5723-9061','0000-0003-0696-9421'], NAMES={'0000-0002-2661-4161':{ko:'정혜주',en:'Haejoo Chung'},'0000-0002-8576-8195':{ko:'최만규',en:'Mankyu Choi'},'0000-0003-2043-2575':{ko:'김혜영',en:'Hae-Young Kim'},'0000-0002-8368-3032':{ko:'오하나',en:'Hannah Oh'},'0000-0002-4675-4612':{ko:'김진호',en:'Jinho Kim'},'0000-0002-9864-3957':{ko:'김록리',en:'Rockli Kim'},'0000-0002-7546-9685':{ko:'박성철',en:'Sungchul Park'},'0000-0001-8853-7061':{ko:'최홍조',en:'Hongjo Choi'},'0000-0001-7748-5622':{ko:'손민성',en:'Minsung Sohn'},'0000-0001-5723-9061':{ko:'이환희',en:'Whanhee Lee'},'0000-0003-0696-9421':{ko:'박금령',en:'Gum-Ryeong Park'}};
   var works={}, diag={};
+
   /* DOI가 없으면 제목으로 중복을 가림. 공백·문장부호만 걷어내고 글자는 그대로 두어야
      국문 제목이 빈 문자열이 되지 않음 */
   function slug(t){ return String(t).toLowerCase().replace(/[\s.,:;!?'"“”‘’()\[\]{}<>\/\\|·…∙•\-–—_~]/g,'').slice(0,120); }
   function key(w){ return w.doi ? 'doi:'+w.doi.toLowerCase() : 'ti:'+slug(w.title); }
+
   function pick(g){
-    /* 한 그룹(동일 논문)의 여러 출처를 훑어 가장 완전한 정보를 모음 */
+    /* 한 그룹(동일 저작)의 여러 출처를 훑어 가장 완전한 정보를 모음.
+       한 저작이 프리프린트와 게재본으로 함께 등록된 경우 게재본 유형이 이김 */
     var ss=g['work-summary']||[]; if(!ss.length) return null;
-    var isArticle=false, title='', journal='', doi='', y=0, m=0;
+    var kind=null, title='', journal='', doi='', y=0, m=0;
     for(var i=0;i<ss.length;i++){
       var s=ss[i];
-      if((s.type||'').toLowerCase().indexOf('journal-article')>=0) isArticle=true;
+      var kk=kindOf(s.type);
+      if(kk && (!kind || RANK[kk]>RANK[kind])) kind=kk;
       if(!title && s.title && s.title.title) title=s.title.title.value||'';
       if(!journal && s['journal-title']) journal=s['journal-title'].value||'';
       var pd=s['publication-date']||{};
@@ -341,34 +377,36 @@
         if(!doi && (x['external-id-type']||'').toLowerCase()==='doi') doi=x['external-id-value']||'';
       });
     }
-    return {art:isArticle, dated:!!y, y:y, m:m,
-            w:(isArticle&&title&&y)?{title:title,journal:journal,year:y,month:m,doi:doi,who:[]}:null};
+    return {kind:kind, dated:!!y, y:y, m:m,
+            w:(kind&&title&&y)?{kind:kind,title:title,journal:journal,year:y,month:m,doi:doi,who:[]}:null};
   }
+
   function pull(id){
     return fetch('https://pub.orcid.org/v3.0/'+id+'/works',{headers:{'Accept':'application/json'}})
       .then(function(r){ return r.ok?r.json():Promise.reject(); })
       .then(function(d){
-        var st=diag[id]={total:(d.group||[]).length, art:0, kept:0, nodate:0, last:0, err:false};
+        var st=diag[id]={total:(d.group||[]).length, use:0, kept:0, nodate:0, last:0, err:false};
         (d.group||[]).forEach(function(g){
           var r=pick(g);
-          if(r.art){
-            st.art++;
+          if(r.kind){
+            st.use++;
             if(!r.dated) st.nodate++;
             else { var v=r.y*12+(r.m||0); if(v>st.last){ st.last=v; st.lastY=r.y; st.lastM=r.m; } }
           }
           var w=r.w; if(!w) return;
           if(w.year<SINCE_Y) return;
-          if(w.year===SINCE_Y && w.month && w.month<SINCE_M) return;
           st.kept++;
           var k=key(w);
           if(works[k]){
             if(works[k].who.indexOf(id)<0) works[k].who.push(id);
             if(!works[k].journal) works[k].journal=w.journal;
             if(!works[k].doi) works[k].doi=w.doi;
+            if(RANK[w.kind]>RANK[works[k].kind]) works[k].kind=w.kind;
           } else { w.who=[id]; works[k]=w; }
         });
-      }).catch(function(){ diag[id]={total:0,art:0,kept:0,nodate:0,last:0,err:true}; });
+      }).catch(function(){ diag[id]={total:0,use:0,kept:0,nodate:0,last:0,err:true}; });
   }
+
   Promise.all(IDS.map(pull)).then(function(){
     var all=Object.keys(works).map(function(k){ return works[k]; });
     if(!all.length){
@@ -381,95 +419,155 @@
     }
     all.sort(function(a,b){ return (b.year-a.year) || (b.month-a.month) || a.title.localeCompare(b.title); });
 
-    /* 연구위원별 편수 */
+    /* 연구위원별 건수 — 필터 칩에 쓸 목록을 추리는 용도 */
     var got={};
     all.forEach(function(w){ w.who.forEach(function(id){ got[id]=(got[id]||0)+1; }); });
-    var filter=null;   /* null = 전체 */
+
+    var YEARS=[]; for(var y=FY; y>=SINCE_Y; y--) YEARS.push(y);
+
+    var who=null;          /* null = 전체 연구위원 */
+    var year=FY;           /* 기본값: 올해 / 'all' = 5년 전체 */
 
     function en(){ return document.body.classList.contains('en'); }
-
-    function drawCount(n){
-      var e=en();
-      if(filter){
-        var who=e?NAMES[filter].en:NAMES[filter].ko;
-        cnt.setAttribute('data-ko',who);
-        cnt.setAttribute('data-en',who);
-        cnt.textContent=who;
-      } else {
-        cnt.setAttribute('data-ko','준연구소 설립 이후 '+n+'편');
-        cnt.setAttribute('data-en',n+' articles since August 2025');
-        cnt.textContent=e?(n+' articles since August 2025'):('준연구소 설립 이후 '+n+'편');
-      }
-    }
-
-    /* 국문은 가나다순, 영문은 성(姓) ABC순 */
-    function enkey(s){ var a=String(s).split(' '); return (a.pop()+' '+a.join(' ')).toLowerCase(); }
-
-    function drawFilter(){
-      var e=en();
-      bar.innerHTML='';
-      var ids=IDS.filter(function(id){ return got[id]; }).sort(function(a,b){
-        return e ? enkey(NAMES[a].en).localeCompare(enkey(NAMES[b].en))
-                 : NAMES[a].ko.localeCompare(NAMES[b].ko,'ko'); });
-      var opts=[null].concat(ids);
-      opts.forEach(function(id){
-        var b=document.createElement('button');
-        b.type='button';
-        b.className='fchip'+(filter===id?' on':'');
-        b.textContent = (id===null) ? (e?'All':'전체') : (e?NAMES[id].en:NAMES[id].ko);
-        b.addEventListener('click', function(){ filter=id; draw(); });
-        bar.appendChild(b);
-      });
-      bar.style.display='flex';
-    }
-
-    function draw(){
-      var e=en();
-      var rows=filter ? all.filter(function(w){ return w.who.indexOf(filter)>=0; }) : all;
-      drawFilter(); drawCount(rows.length);
-
-      var frag=document.createDocumentFragment(), year=null, head=null, n=0;
-      function closeYear(){
-        if(head){ var t=head.querySelector('.yn');
-          t.textContent = filter ? '' : (e?(n+(n===1?' article':' articles')):(n+'편')); }
-      }
-      rows.forEach(function(w){
-        if(w.year!==year){
-          closeYear();
-          year=w.year; n=0;
-          head=document.createElement('div'); head.className='pubyear';
-          var y=document.createElement('span'); y.className='y'; y.textContent=w.year;
-          var c=document.createElement('span'); c.className='yn';
-          head.appendChild(y); head.appendChild(c);
-          frag.appendChild(head);
-        }
-        n++;
-        var d=document.createElement('div'); d.className='pub';
-        var t;
-        if(w.doi){ t=document.createElement('a'); t.href='https://doi.org/'+w.doi; t.target='_blank'; t.rel='noopener'; t.style.color='inherit'; }
-        else { t=document.createElement('span'); }
-        t.className='pt'; t.textContent=w.title; d.appendChild(t);
-        var meta=document.createElement('span'); meta.className='pj';
-        var names=w.who.map(function(id){ return e?NAMES[id].en:NAMES[id].ko; }).join(' · ');
-        var when=w.month? (w.month+'월') : '';
-        if(e) when=w.month? monthEn(w.month) : '';
-        meta.innerHTML=(w.journal? '<em style="font-style:italic">'+esc(w.journal)+'</em>' : '')
-          + (w.journal&&when? ' · ':'') + when
-          + ((w.journal||when)? ' · ':'') + '<span class="pw">'+esc(names)+'</span>';
-        d.appendChild(meta);
-        frag.appendChild(d);
-      });
-      closeYear();
-      list.innerHTML=''; list.appendChild(frag);
-    }
-
     function esc(x){ return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     function monthEn(m){
       return ['January','February','March','April','May','June',
               'July','August','September','October','November','December'][m-1]||'';
     }
+    /* 국문은 가나다순, 영문은 성(姓) ABC순 */
+    function enkey(s){ var a=String(s).split(' '); return (a.pop()+' '+a.join(' ')).toLowerCase(); }
 
-    /* ORCID에 공개 논문이 없는 연구위원 표시 */
+    /* 상단 요약은 언제나 5년 전체를 말한다 — 규모는 여기서 드러나고, 목록은 한 해씩 본다 */
+    function drawCount(scope){
+      var e=en(), ko=[], enp=[];
+      KINDS.forEach(function(K){
+        var n=scope.filter(function(w){ return w.kind===K.k; }).length;
+        if(!n) return;
+        ko.push((K.s_ko||K.ko)+' '+n+K.u_ko);   /* 요약줄에서는 짧은 이름을 쓴다 */
+        enp.push(n+' '+(n===1?K.u_en1:K.u_en));
+      });
+      var head_ko = who ? NAMES[who].ko+' · 최근 5년' : ('최근 5년('+SINCE_Y+'–'+FY+')');
+      var head_en = who ? NAMES[who].en+' · past five years' : ('Past five years ('+SINCE_Y+'–'+FY+')');
+      var kos=head_ko+' '+ko.join(' · ');
+      var ens=head_en+': '+enp.join(' · ');
+      cnt.setAttribute('data-ko',kos);
+      cnt.setAttribute('data-en',ens);
+      cnt.textContent=e?ens:kos;
+    }
+
+    function chip(label, sub, on, fn){
+      var b=document.createElement('button');
+      b.type='button';
+      b.className='fchip'+(on?' on':'');
+      b.textContent=label;
+      if(sub){ var i=document.createElement('i'); i.textContent=sub; b.appendChild(i); }
+      b.addEventListener('click', fn);
+      return b;
+    }
+
+    function drawFilter(scope){
+      var e=en();
+      bar.innerHTML='';
+
+      /* 연도 */
+      var r1=document.createElement('div'); r1.className='frow';
+      var l1=document.createElement('span'); l1.className='flbl';
+      l1.textContent=e?'YEAR':'연도'; r1.appendChild(l1);
+      YEARS.forEach(function(y){
+        var n=scope.filter(function(w){ return w.year===y; }).length;
+        /* 기록이 없는 해는 칩을 만들지 않되, 지금 고른 해는 0건이어도 남겨 둔다 */
+        if(!n && year!==y) return;
+        r1.appendChild(chip(String(y), String(n), year===y, function(){ year=y; draw(); }));
+      });
+      r1.appendChild(chip(e?'All years':'5년 전체', String(scope.length), year==='all',
+        function(){ year='all'; draw(); }));
+      bar.appendChild(r1);
+
+      /* 연구위원 */
+      var r2=document.createElement('div'); r2.className='frow';
+      var l2=document.createElement('span'); l2.className='flbl';
+      l2.textContent=e?'FELLOW':'연구위원'; r2.appendChild(l2);
+      var ids=IDS.filter(function(id){ return got[id]; }).sort(function(a,b){
+        return e ? enkey(NAMES[a].en).localeCompare(enkey(NAMES[b].en))
+                 : NAMES[a].ko.localeCompare(NAMES[b].ko,'ko'); });
+      r2.appendChild(chip(e?'All':'전체', '', who===null, function(){ who=null; draw(); }));
+      ids.forEach(function(id){
+        r2.appendChild(chip(e?NAMES[id].en:NAMES[id].ko, '', who===id, function(){ who=id; draw(); }));
+      });
+      bar.appendChild(r2);
+
+      bar.style.display='flex';
+    }
+
+    function draw(){
+      var e=en();
+      var scope = who ? all.filter(function(w){ return w.who.indexOf(who)>=0; }) : all;
+
+      drawFilter(scope);
+      drawCount(scope);
+
+      var rows = (year==='all') ? scope : scope.filter(function(w){ return w.year===year; });
+      var frag=document.createDocumentFragment();
+
+      if(!rows.length){
+        /* 고른 조건을 임의로 바꾸지 않는다 — 비어 있다는 사실을 그대로 보인다 */
+        var em=document.createElement('div'); em.className='pubempty';
+        var whoTxt = who ? ((e?NAMES[who].en:NAMES[who].ko)+(e?': ':' 연구위원의 ')) : '';
+        var yrTxt  = (year==='all') ? (e?'the past five years':'최근 5년') : (e?String(year):(year+'년'));
+        em.textContent = e
+          ? (whoTxt+'no records in ORCID for '+yrTxt+'.')
+          : (whoTxt+yrTxt+' 기록이 ORCID에 등록되어 있지 않습니다.');
+        frag.appendChild(em);
+        list.innerHTML=''; list.appendChild(frag);
+        return;
+      }
+
+      KINDS.forEach(function(K){
+        var sub=rows.filter(function(w){ return w.kind===K.k; });
+        if(!sub.length) return;          /* ← 0건인 유형은 구획째 만들지 않는다 */
+
+        var kh=document.createElement('div');
+        kh.className='pubkind';
+        kh.textContent=e?K.en:K.ko;
+        frag.appendChild(kh);
+
+        var yy=null, head=null, n=0;
+        function closeYear(){
+          if(head){ var t=head.querySelector('.yn');
+            t.textContent = e?(n+' '+(n===1?K.u_en1:K.u_en)):(n+K.u_ko); }
+        }
+        sub.forEach(function(w){
+          if(w.year!==yy){
+            closeYear();
+            yy=w.year; n=0;
+            head=document.createElement('div'); head.className='pubyear';
+            var ye=document.createElement('span'); ye.className='y'; ye.textContent=w.year;
+            var c=document.createElement('span'); c.className='yn';
+            head.appendChild(ye); head.appendChild(c);
+            frag.appendChild(head);
+          }
+          n++;
+          var d=document.createElement('div'); d.className='pub';
+          var t;
+          if(w.doi){ t=document.createElement('a'); t.href='https://doi.org/'+w.doi; t.target='_blank'; t.rel='noopener'; t.style.color='inherit'; }
+          else { t=document.createElement('span'); }
+          t.className='pt'; t.textContent=w.title; d.appendChild(t);
+          var meta=document.createElement('span'); meta.className='pj';
+          var names=w.who.map(function(id){ return e?NAMES[id].en:NAMES[id].ko; }).join(' · ');
+          var when=w.month? (w.month+'월') : '';
+          if(e) when=w.month? monthEn(w.month) : '';
+          meta.innerHTML=(w.journal? '<em style="font-style:italic">'+esc(w.journal)+'</em>' : '')
+            + (w.journal&&when? ' · ':'') + when
+            + ((w.journal||when)? ' · ':'') + '<span class="pw">'+esc(names)+'</span>';
+          d.appendChild(meta);
+          frag.appendChild(d);
+        });
+        closeYear();
+      });
+
+      list.innerHTML=''; list.appendChild(frag);
+    }
+
     /* 점검용 — 주소 끝에 ?check 를 붙였을 때만 보임 (방문자에게는 나타나지 않음) */
     if(/[?&]check\b/.test(location.search)){
       var nm=document.getElementById('pubnote');
@@ -478,22 +576,23 @@
           + '<table style="border-collapse:collapse;font-size:12.5px">'
           + '<tr style="color:var(--muted)"><td style="padding:2px 14px 6px 0">연구위원</td>'
           + '<td style="padding:2px 14px 6px 0">ORCID 등록</td>'
-          + '<td style="padding:2px 14px 6px 0">학술지 논문</td>'
+          + '<td style="padding:2px 14px 6px 0">표시 대상 유형</td>'
           + '<td style="padding:2px 14px 6px 0">기간 내</td>'
-          + '<td style="padding:2px 14px 6px 0">최신 논문</td>'
+          + '<td style="padding:2px 14px 6px 0">최신 기록</td>'
           + '<td style="padding:2px 0 6px 0">날짜 없음</td></tr>';
         IDS.forEach(function(id){
-          var d=diag[id]||{total:0,art:0,kept:0,err:true};
+          var d=diag[id]||{total:0,use:0,kept:0,err:true};
           h+='<tr><td style="padding:2px 14px 2px 0">'+NAMES[id].ko+'</td>'
            + '<td style="padding:2px 14px 2px 0">'+(d.err?'조회 실패':d.total)+'</td>'
-           + '<td style="padding:2px 14px 2px 0">'+(d.err?'-':d.art)+'</td>'
+           + '<td style="padding:2px 14px 2px 0">'+(d.err?'-':d.use)+'</td>'
            + '<td style="padding:2px 14px 2px 0">'+(d.err?'-':d.kept)+'</td>'
            + '<td style="padding:2px 14px 2px 0">'+(d.err?'-':(d.lastY?(d.lastY+(d.lastM?'. '+d.lastM+'.':'')):'없음'))+'</td>'
            + '<td style="padding:2px 0 2px 0">'+(d.err?'-':d.nodate)+'</td></tr>';
         });
         h+='</table><div style="margin-top:8px;color:var(--muted)">'
-         + '「최신 논문」은 그 분 ORCID에 등록된 가장 최근 논문의 발간연월입니다. 이 값이 2025년 8월보다 앞서면 '
-         + '그 뒤로 ORCID를 갱신하지 않으신 것이고, 「날짜 없음」이 크면 발간일 없이 등록되어 목록에서 빠진 것입니다.</div>';
+         + '「표시 대상 유형」은 학술지 논문·저서·특허의 합계임(프리프린트·학술대회 발표 제외). '
+         + '「기간 내」는 그 가운데 '+SINCE_Y+'년 이후 건수이고, 「날짜 없음」이 크면 발간일 없이 '
+         + '등록되어 목록에서 빠진 것임.</div>';
         nm.removeAttribute('data-ko'); nm.removeAttribute('data-en');
         nm.className='note';
         nm.innerHTML=h;
