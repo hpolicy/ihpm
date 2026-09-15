@@ -399,11 +399,11 @@
     var ss=g['work-summary']||[]; if(!ss.length) return null;
     var own=false;
     for(var q=0;q<ss.length;q++){ if(mine(ss[q], id)){ own=true; break; } }
-    var kind=null, title='', journal='', doi='', y=0, m=0;
+    var kind=null, sub='', title='', journal='', doi='', y=0, m=0;
     for(var i=0;i<ss.length;i++){
       var s=ss[i];
       var kk=(own && !mine(s, id)) ? null : kindOf(s.type);
-      if(kk && (!kind || RANK[kk]>RANK[kind])) kind=kk;
+      if(kk && (!kind || RANK[kk]>RANK[kind])){ kind=kk; sub=String(s.type||'').toLowerCase(); }
       if(!title && s.title && s.title.title) title=s.title.title.value||'';
       if(!journal && s['journal-title']) journal=s['journal-title'].value||'';
       var pd=s['publication-date']||{};
@@ -415,7 +415,8 @@
       });
     }
     return {kind:kind, dated:!!y, y:y, m:m,
-            w:(kind&&title&&y)?{kind:kind,title:title,journal:journal,year:y,month:m,doi:doi,who:[]}:null};
+            w:(kind&&title&&y)?{kind:kind,sub:sub,title:title,journal:journal,
+                                year:y,month:m,doi:doi,who:[]}:null};
   }
 
   function pull(id){
@@ -445,8 +446,24 @@
       }).catch(function(){ diag[id]={total:0,use:0,kept:0,nodate:0,last:0,err:true}; });
   }
 
+  /* 저서·저서 장의 출판사 — ORCID에는 출판사 항목이 없어 Crossref에서 DOI로 받아 온다.
+     건수가 적어 부담이 없고, 조회에 실패하면 출판사만 빠진 채 그대로 표시된다 */
+  function publishers(list){
+    var need=list.filter(function(w){ return w.kind==='book' && w.doi; });
+    if(!need.length) return Promise.resolve();
+    return Promise.all(need.map(function(w){
+      return fetch('https://api.crossref.org/works/'+encodeURIComponent(w.doi)
+                   +'?mailto=journal@hpolitics.org')
+        .then(function(r){ return r.ok?r.json():Promise.reject(); })
+        .then(function(d){ w.publisher=((d||{}).message||{}).publisher||''; })
+        .catch(function(){});
+    }));
+  }
+
   Promise.all(IDS.map(pull)).then(function(){
     var all=Object.keys(works).map(function(k){ return works[k]; });
+    return publishers(all).then(function(){ return all; });
+  }).then(function(all){
     if(!all.length){
       cnt.setAttribute('data-ko','목록을 불러오지 못했습니다. 잠시 후 새로고침해 주십시오.');
       cnt.setAttribute('data-en','The list could not be loaded. Please refresh in a moment.');
@@ -594,9 +611,16 @@
           var names=w.who.map(function(id){ return e?NAMES[id].en:NAMES[id].ko; }).join(' · ');
           var when=w.month? (w.month+'월') : '';
           if(e) when=w.month? monthEn(w.month) : '';
-          meta.innerHTML=(w.journal? '<em style="font-style:italic">'+esc(w.journal)+'</em>' : '')
-            + (w.journal&&when? ' · ':'') + when
-            + ((w.journal||when)? ' · ':'') + '<span class="pw">'+esc(names)+'</span>';
+          var bits=[];
+          if(w.journal){
+            /* 저서 장은 수록서를 「In:」으로 밝힌다. 학술지 논문은 지금처럼 誌名만 */
+            var lead=(w.sub==='book-chapter') ? (e?'In: ':'수록: ') : '';
+            bits.push(lead+'<em style="font-style:italic">'+esc(w.journal)+'</em>');
+          }
+          if(w.publisher) bits.push(esc(w.publisher));
+          if(when) bits.push(when);
+          bits.push('<span class="pw">'+esc(names)+'</span>');
+          meta.innerHTML=bits.join(' · ');
           d.appendChild(meta);
           frag.appendChild(d);
         });
