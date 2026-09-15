@@ -535,14 +535,16 @@
       var r1=document.createElement('div'); r1.className='frow';
       var l1=document.createElement('span'); l1.className='flbl';
       l1.textContent=e?'YEAR':'연도'; r1.appendChild(l1);
+      /* 두 줄 모두 「전체」를 맨 앞에 둔다. 다만 처음 열었을 때는 올해가 골라져 있어
+         목록이 5년치로 쏟아지지 않는다 */
+      r1.appendChild(chip(e?'All years':'5년 전체', String(scope.length), year==='all',
+        function(){ year='all'; draw(); }));
       YEARS.forEach(function(y){
         var n=scope.filter(function(w){ return w.year===y; }).length;
         /* 기록이 없는 해는 칩을 만들지 않되, 지금 고른 해는 0건이어도 남겨 둔다 */
         if(!n && year!==y) return;
         r1.appendChild(chip(String(y), String(n), year===y, function(){ year=y; draw(); }));
       });
-      r1.appendChild(chip(e?'All years':'5년 전체', String(scope.length), year==='all',
-        function(){ year='all'; draw(); }));
       bar.appendChild(r1);
 
       /* 연구위원 */
