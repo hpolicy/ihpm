@@ -350,6 +350,32 @@
   }
   var RANK={article:3, book:2, patent:1};
 
+  /* 목록에서 빼는 항목 — DOI 또는 식별자로 지정한다.
+     학술대회 초록이 Web of Science를 통해 journal-article 유형으로 등록된 경우가 있는데,
+     그 항목은 등록 주체(WoS·Clarivate)만 고칠 수 있어 ORCID에서 유형을 바로잡을 수 없다.
+     그런 항목을 여기에 적어 둔다. ?check 화면에서 확인한 뒤 한 줄씩 추가하면 된다. */
+  var EXCLUDE=[
+    /* 제15차 유럽공중보건학회(베를린, 2022.11.) 초록 4건 — 정혜주 */
+    'WOS:000895463401508',   /* A Sick Benefit Scheme Reduces Unmet Healthcare Needs */
+    'WOS:000895463400655',   /* Inequalities in adverse birth outcomes and survival */
+    'WOS:000895463402045',   /* Paid Sick Leave and Sickness Benefits for employees' */
+    'WOS:000895463401361'    /* The paid sick leave and sickness benefits for UHC */
+  ];
+  var EXSET={};
+  EXCLUDE.forEach(function(v){ EXSET[String(v).toLowerCase()]=1; });
+  function excluded(g){
+    var hit=false;
+    (g['work-summary']||[]).forEach(function(s){
+      ((s['external-ids']||{})['external-id']||[]).forEach(function(x){
+        if(EXSET[String(x['external-id-value']||'').toLowerCase()]) hit=true;
+      });
+    });
+    ((g['external-ids']||{})['external-id']||[]).forEach(function(x){
+      if(EXSET[String(x['external-id-value']||'').toLowerCase()]) hit=true;
+    });
+    return hit;
+  }
+
   var IDS=['0000-0002-2661-4161','0000-0002-8576-8195','0000-0003-2043-2575','0000-0002-8368-3032','0000-0002-4675-4612','0000-0002-9864-3957','0000-0002-7546-9685','0000-0001-8853-7061','0000-0001-7748-5622','0000-0001-5723-9061','0000-0003-0696-9421'], NAMES={'0000-0002-2661-4161':{ko:'정혜주',en:'Haejoo Chung'},'0000-0002-8576-8195':{ko:'최만규',en:'Mankyu Choi'},'0000-0003-2043-2575':{ko:'김혜영',en:'Hae-Young Kim'},'0000-0002-8368-3032':{ko:'오하나',en:'Hannah Oh'},'0000-0002-4675-4612':{ko:'김진호',en:'Jinho Kim'},'0000-0002-9864-3957':{ko:'김록리',en:'Rockli Kim'},'0000-0002-7546-9685':{ko:'박성철',en:'Sungchul Park'},'0000-0001-8853-7061':{ko:'최홍조',en:'Hongjo Choi'},'0000-0001-7748-5622':{ko:'손민성',en:'Minsung Sohn'},'0000-0001-5723-9061':{ko:'이환희',en:'Whanhee Lee'},'0000-0003-0696-9421':{ko:'박금령',en:'Gum-Ryeong Park'}};
   var works={}, diag={};
 
@@ -358,14 +384,25 @@
   function slug(t){ return String(t).toLowerCase().replace(/[\s.,:;!?'"“”‘’()\[\]{}<>\/\\|·…∙•\-–—_~]/g,'').slice(0,120); }
   function key(w){ return w.doi ? 'doi:'+w.doi.toLowerCase() : 'ti:'+slug(w.title); }
 
-  function pick(g){
+  /* 그 항목을 연구위원 본인이 등록했는지 — 기관이 넣은 것과 구별한다 */
+  function mine(s, id){
+    var so=(s.source||{})['source-orcid']||{};
+    return String(so.path||'')===String(id);
+  }
+
+  function pick(g, id){
     /* 한 그룹(동일 저작)의 여러 출처를 훑어 가장 완전한 정보를 모음.
-       한 저작이 프리프린트와 게재본으로 함께 등록된 경우 게재본 유형이 이김 */
+       유형은 본인이 등록한 것이 있으면 그것만 따른다. Web of Science 등이 학술대회 초록을
+       journal-article로 올려 두는 경우가 있는데, 등록 주체만 고칠 수 있어 ORCID에서
+       바로잡을 수 없기 때문이다. 본인이 conference-abstract로 다시 등록하면 그 판단이 이긴다.
+       본인 등록분이 없을 때만 기관 등록분을 보고, 그중에서는 게재본 유형이 프리프린트를 이긴다 */
     var ss=g['work-summary']||[]; if(!ss.length) return null;
+    var own=false;
+    for(var q=0;q<ss.length;q++){ if(mine(ss[q], id)){ own=true; break; } }
     var kind=null, title='', journal='', doi='', y=0, m=0;
     for(var i=0;i<ss.length;i++){
       var s=ss[i];
-      var kk=kindOf(s.type);
+      var kk=(own && !mine(s, id)) ? null : kindOf(s.type);
       if(kk && (!kind || RANK[kk]>RANK[kind])) kind=kk;
       if(!title && s.title && s.title.title) title=s.title.title.value||'';
       if(!journal && s['journal-title']) journal=s['journal-title'].value||'';
@@ -387,7 +424,8 @@
       .then(function(d){
         var st=diag[id]={total:(d.group||[]).length, use:0, kept:0, nodate:0, last:0, err:false};
         (d.group||[]).forEach(function(g){
-          var r=pick(g);
+          if(excluded(g)) return;
+          var r=pick(g, id);
           if(r.kind){
             st.use++;
             if(!r.dated) st.nodate++;
