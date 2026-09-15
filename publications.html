@@ -448,6 +448,13 @@
 
   /* 저서·저서 장의 출판사 — ORCID에는 출판사 항목이 없어 Crossref에서 DOI로 받아 온다.
      건수가 적어 부담이 없고, 조회에 실패하면 출판사만 빠진 채 그대로 표시된다 */
+  /* Crossref의 출판사 표기에는 지명이 공백 없이 붙어 오는 경우가 있다
+     (예: "Oxford University PressNew York"). 출판사명이 끝나는 자리에서 끊는다 */
+  function tidyPub(v){
+    var m=String(v||'').match(/^(.*?(?:University Press|Press|Publishing|Publishers|Publications|Books|Verlag|Ltd|Inc))(?=[A-Z])/);
+    return (m ? m[1] : String(v||'')).trim();
+  }
+
   function publishers(list){
     var need=list.filter(function(w){ return w.kind==='book' && w.doi; });
     if(!need.length) return Promise.resolve();
@@ -455,7 +462,7 @@
       return fetch('https://api.crossref.org/works/'+encodeURIComponent(w.doi)
                    +'?mailto=journal@hpolitics.org')
         .then(function(r){ return r.ok?r.json():Promise.reject(); })
-        .then(function(d){ w.publisher=((d||{}).message||{}).publisher||''; })
+        .then(function(d){ w.publisher=tidyPub(((d||{}).message||{}).publisher||''); })
         .catch(function(){});
     }));
   }
